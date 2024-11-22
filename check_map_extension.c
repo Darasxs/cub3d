@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_map_extension.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 14:28:49 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/11/22 16:05:24 by paprzyby         ###   ########.fr       */
+/*   Created: 2024/11/22 15:58:37 by paprzyby          #+#    #+#             */
+/*   Updated: 2024/11/22 16:06:10 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char **av)
+void	check_map_extension(char *str)
 {
-	mlx_t	*mlx;
+	char *ex;
 
-	mlx = NULL;
-	if (ac == 2)
+	ex = ft_strrchr(str, '.');
+	if (!ex || ft_strncmp(ex, ".cub", 4) != 0)
 	{
-		check_map_extension(av[1]);
-		return (0);
+		ft_putstr_fd("Error\nWrong file name\n", 2);
+		exit(1);
 	}
-	ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
-	return (1);
 }
