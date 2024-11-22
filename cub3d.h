@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/11/22 16:05:30 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:09:51 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@
 # include <stdbool.h>
 # include <math.h>
 // -lm flag in makefile ????
+
+typedef struct s_game
+{
+	mlx_t	*mlx;
+}			t_game;
 
 void	check_map_extension(char *str);
 
