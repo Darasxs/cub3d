@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:28:49 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/11/25 16:14:06 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:24:10 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int ac, char **av)
 		struct_init(game);
 		//tutaj teraz zaczyna sie parsing
 		map_init(game, av[1]);
+		map_validation(game);
 		mlx = NULL;
 		free(game);
 		return (0);

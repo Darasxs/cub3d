@@ -6,7 +6,7 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2024/11/25 15:59:55 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/11/25 16:25:00 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME			=	cub3d
 
 SRC				=	main.c \
 					check_map_extension.c \
-					map_init.c
+					map_init.c \
+					map_validation.c
 
 LIBMLX_DIR		=	./MLX42
 LIBFT_DIR		=	libft

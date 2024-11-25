@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/11/25 16:10:52 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:35:47 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	file_descriptor_init(char *map, t_game *game)
 	if (fd == -1)
 	{
 		//free game struct
-		printf("Error\nwith the file descriptor\n");
+		ft_putstr_fd("Error\nwith the file descriptor\n", 2);
 		exit(1);
 	}
 	return (fd);
@@ -61,7 +61,7 @@ char	*map_read(t_game *game, char *map_file)
 			free(line);
 		close(fd);
 		//free game struct
-		printf("Error\nInvalid map\n");
+		ft_putstr_fd("Error\nInvalid map\n", 2);
 		exit(1);
 	}
 	while (line)
@@ -75,7 +75,7 @@ char	*map_read(t_game *game, char *map_file)
 			free(line);
 			close(fd);
 			//free game struct
-			printf("Error\nInvalid map\n");
+			ft_putstr_fd("Error\nInvalid map\n", 2);
 			exit(1);
 		}
 		free(line);
@@ -96,7 +96,7 @@ void	map_init(t_game *game, char *map_file)
 	{
 		//free game struct
 		free(lines);
-		printf("Error\nInvalid map\n");
+		ft_putstr_fd("Error\nInvalid map\n", 2);
 		exit(1);
 	}
 	game->map_cpy = ft_split(lines, '\n');
@@ -111,7 +111,7 @@ void	map_init(t_game *game, char *map_file)
 		free(game->map);
 		//free game struct
 		free(lines);
-		printf("Error\nInvalid map\n");
+		ft_putstr_fd("Error\nInvalid map\n", 2);
 		exit(1);
 	}
 	free(lines);
