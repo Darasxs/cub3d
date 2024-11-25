@@ -6,11 +6,19 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:28:49 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/11/22 16:17:33 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:14:06 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	struct_init(t_game *game)
+{
+	game->map = NULL;
+	game->map_cpy = NULL;
+	game->column = 0;
+	game->row = 0;
+}
 
 int	main(int ac, char **av)
 {
@@ -26,8 +34,9 @@ int	main(int ac, char **av)
 			ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
 			return (1);
 		}
+		struct_init(game);
 		//tutaj teraz zaczyna sie parsing
-		//funkcja map_init
+		map_init(game, av[1]);
 		mlx = NULL;
 		free(game);
 		return (0);

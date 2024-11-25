@@ -1,0 +1,118 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_init.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
+/*   Updated: 2024/11/25 16:10:52 by paprzyby         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	check_map_size(char *line, t_game *game, int first)
+{
+	int		len;
+
+	len = ft_strlen(line);
+	if (len == 0 || line[0] == '\n')
+		return (1);
+	if (line[len - 1] == '\n')
+		len--;
+	if (len != first)
+		return (1);
+	game->column = len;
+	game->row++;
+	return (0);
+}
+
+int	file_descriptor_init(char *map, t_game *game)
+{
+	int	fd;
+
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+	{
+		//free game struct
+		printf("Error\nwith the file descriptor\n");
+		exit(1);
+	}
+	return (fd);
+}
+
+char	*map_read(t_game *game, char *map_file)
+{
+	char	*lines;
+	char	*line;
+	char	*tmp;
+	int		fd;
+	int		first;
+
+	fd = file_descriptor_init(map_file, game);
+	line = get_next_line(fd);
+	first = ft_strlen(line) - 1;
+	lines = ft_calloc(1, 1);
+	if (!line || line[0] == '\n')
+	{
+		free(lines);
+		if (line[0] == '\n')
+			free(line);
+		close(fd);
+		//free game struct
+		printf("Error\nInvalid map\n");
+		exit(1);
+	}
+	while (line)
+	{
+		tmp = lines;
+		lines = ft_strjoin(lines, line);
+		free(tmp);
+		if (check_map_size(line, game, first))
+		{
+			free(lines);
+			free(line);
+			close(fd);
+			//free game struct
+			printf("Error\nInvalid map\n");
+			exit(1);
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (lines);
+}
+
+void	map_init(t_game *game, char *map_file)
+{
+	char	*lines;
+	int		i;
+
+	lines = map_read(game, map_file);
+	game->map = ft_split(lines, '\n');
+	if (!game->map)
+	{
+		//free game struct
+		free(lines);
+		printf("Error\nInvalid map\n");
+		exit(1);
+	}
+	game->map_cpy = ft_split(lines, '\n');
+	i = 0;
+	if (!game->map_cpy)
+	{
+		while (game->map[i])
+		{
+			free(game->map[i]);
+			i++;
+		}
+		free(game->map);
+		//free game struct
+		free(lines);
+		printf("Error\nInvalid map\n");
+		exit(1);
+	}
+	free(lines);
+}
