@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:28:49 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/04 08:59:45 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:11:25 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	struct_init(t_game *game)
-{
-	game->map = NULL;
-	game->map_cpy = NULL;
-	game->column = 0;
-	game->row = 0;
-}
 
 int	main(int ac, char **av)
 {
@@ -35,11 +27,19 @@ int	main(int ac, char **av)
 			return (1);
 		}
 		struct_init(game);
-		//parsing
 		map_init(game, av[1]);
 		map_validation(game);
-		//koniec parsingu
-		mlx = NULL;
+		mlx_set_setting(MLX_STRETCH_IMAGE, true);
+		mlx = mlx_init(game->column * 50, game->row * 50, "cub3d", true);
+		if (!mlx)
+		{
+			ft_putstr_fd("Error\nwhile allocating memory\n", 2);
+			return (1);
+		}
+		game->mlx = mlx;
+		mlx_key_hook(mlx, &the_game, game);
+		mlx_loop(mlx);
+		mlx_terminate(mlx);
 		free(game);
 		return (0);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/04 08:50:49 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:11:32 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,9 @@ void	map_validation(t_game *game);
 void	characters_check(t_game *game);
 bool	walls_check(t_game *game);
 bool	check_bottom_wall(t_game *game);
+
+/* ----------  main part ---------- */
+
+void	the_game(mlx_key_data_t keydata, void *param);
 
 #endif

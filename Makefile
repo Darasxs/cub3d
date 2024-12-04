@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
+#    By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2024/12/04 09:31:13 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/12/04 16:10:37 by dpaluszk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ NAME			=	cub3d
 SRC				=	main.c \
 					check_map_extension.c \
 					map_init.c \
-					map_validation.c
+					struct_init.c \
+					map_validation.c \
+					the_game.c
 
 LIBMLX_DIR		=	./MLX42
 LIBFT_DIR		=	libft
