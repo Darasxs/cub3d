@@ -6,7 +6,7 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2024/12/04 09:01:25 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/12/04 09:31:13 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,16 +54,12 @@ $(LIBMLX_DIR):
 		git clone $(MLX_REPO) $(LIBMLX_DIR); \
 	fi
 
-$(OBJ): %.o: %.c
-	@$(eval CURRENT := $(shell echo $$(($(CURRENT) + 1))))
-	@$(eval PERCENT := $(shell echo $$(($(CURRENT) * 100 / $(TOTAL_SRCS)))))
-	@printf "$(CLEAR_LINE)$(YELLOW)Compiling $(PERCENT)%% [$<]$(NC)\n"
-	@$(CC) $(FLAGS) -c $< -o $@
-
 $(NAME):	mlx $(OBJ) $(LIBFT) $(GNL)
 	@echo "------------------------------------------------"
+	@printf "$(CLEAR_LINE)$(YELLOW)Compiling files$(NC)\n\n"
+	@$(CC) $(FLAGS) $(OBJ) $(MLX_FLAGS) -o $@ $(LIBFT) $(GNL)
 	@if [ ! -d $(NAME) ]; then \
-		echo "$(GREEN)$(NAME) compiled successfully!$(NC)"; \
+		echo "\n$(GREEN)$(NAME) compiled successfully!$(NC)"; \
 		echo "\n"; \
 		echo "run with: ./$(NAME)"; \
 		echo "------------------------------------------------"; \
@@ -102,4 +98,3 @@ RED = \033[0;31m
 YELLOW = \033[0;33m
 NC = \033[0m
 CLEAR_LINE = \033[2K\r
-TOTAL_SRCS = $(words $(SRC))
