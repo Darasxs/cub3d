@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/04 08:59:01 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:51:24 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*map_read(t_game *game, char *map_file)
 	fd = file_descriptor_init(map_file, game);
 	line = get_next_line(fd);
 	first = ft_strlen(line) - 1;
-	lines = ft_calloc(1, 1);
+	lines = ft_strdup("");
 	if (!line || line[0] == '\n')
 	{
 		free(lines);

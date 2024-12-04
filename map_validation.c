@@ -3,44 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/04 08:46:56 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:46:15 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	increment_counters(t_game *game)
+{
+	game->x++;
+	game->player_counter++;
+}
+
+void	character_check_logic(t_game *game)
+{
+	if (game->map[game->y][game->x] == '0'
+		|| game->map[game->y][game->x] == '1')
+		game->x++;
+	else if (game->map[game->y][game->x] == 'N')
+		increment_counters(game);
+	else if (game->map[game->y][game->x] == 'S')
+		increment_counters(game);
+	else if (game->map[game->y][game->x] == 'E')
+		increment_counters(game);
+	else if (game->map[game->y][game->x] == 'W')
+		increment_counters(game);
+	else if (game->map[game->y][game->x])
+	{
+		printf("Error\n\"%c\" is an invalid character\n",
+			game->map[game->y][game->x]);
+		// free everything
+		exit(1);
+	}
+}
+
 void	characters_check(t_game *game)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (game->map[y])
+	while (game->map[game->y])
 	{
-		x = 0;
-		while (game->map[y][x])
-		{
-			if (game->map[y][x] == '0' || game->map[y][x] == '1')
-				x++;
-			else if (game->map[y][x] == 'N')
-				x++;
-			else if (game->map[y][x] == 'S')
-				x++;
-			else if (game->map[y][x] == 'E')
-				x++;
-			else if (game->map[y][x] == 'W')
-				x++;
-			else if (game->map[y][x])
-			{
-				printf("Error\n\"%c\" is an invalid character\n", game->map[y][x]);
-				//free everything
-				exit(1);
-			}
-		}
-		y++;
+		game->x = 0;
+		while (game->map[game->y][game->x])
+			character_check_logic(game);
+		game->y++;
+	}
+	if (game->player_counter != 1)
+	{
+		printf("Error\nThere must be one player in the game\n");
+		exit(1);
 	}
 }
 
@@ -94,8 +106,8 @@ void	map_validation(t_game *game)
 	if (walls_check(game))
 	{
 		ft_putstr_fd("Error\nMap is not surrounded by walls\n", 2);
-		//free everything
+		// free everything
 		exit(1);
 	}
-	//teraz tutaj flood_fill
+	// teraz tutaj flood_fill
 }

@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/04 16:11:32 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:33:30 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ typedef struct s_game
 	char	**map_cpy;
 	int		column;
 	int		row;
+	int		player_counter;
+	int		x;
+	int		y;
 }			t_game;
 
 /* ----------  map extenstion ---------- */
@@ -54,6 +57,7 @@ int		file_descriptor_init(char *map, t_game *game);
 int		check_map_size(char *line, t_game *game, int first);
 void	map_validation(t_game *game);
 void	characters_check(t_game *game);
+void	increment_counters(t_game *game);
 bool	walls_check(t_game *game);
 bool	check_bottom_wall(t_game *game);
 

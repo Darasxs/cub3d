@@ -6,7 +6,7 @@
 #    By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2024/12/04 16:10:37 by dpaluszk         ###   ########.fr        #
+#    Updated: 2024/12/04 17:34:40 by dpaluszk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ CC				=	cc
 RM				=	rm -f
 RMDIR			=	rm -rf
 
-FLAGS			=	-Wall -Wextra -Werror
+FLAGS			=	-Wall -Wextra -Werror -g
 MLX_FLAGS		:=	-L./MLX42/build -lmlx42 -I./MLX42/include -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
 HEADERS			:=	-I ./include -I $(LIBMLX_DIR)/include -I $(LIBFT_DIR) -I $(GNL_DIR)
