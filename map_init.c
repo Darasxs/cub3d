@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/11/25 16:35:47 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/04 08:59:01 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	file_descriptor_init(char *map, t_game *game)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
+		(void)game;
 		//free game struct
 		ft_putstr_fd("Error\nwith the file descriptor\n", 2);
 		exit(1);

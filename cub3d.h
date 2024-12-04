@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/11/25 16:27:53 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/04 08:50:49 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <math.h>
 // -lm flag in makefile ????
 
+/* ----------  struct of the game ---------- */
+
 typedef struct s_game
 {
 	mlx_t	*mlx;
@@ -36,14 +38,23 @@ typedef struct s_game
 	int		row;
 }			t_game;
 
-void	check_map_extension(char *str);
-void	struct_init(t_game *game);
+/* ----------  map extenstion ---------- */
 
+void	check_map_extension(char *str);
+
+/* ----------  initializations ---------- */
+
+void	struct_init(t_game *game);
 void	map_init(t_game *game, char *map_file);
 char	*map_read(t_game *game, char *map_file);
 int		file_descriptor_init(char *map, t_game *game);
+
+/* ----------  map validation ---------- */
+
 int		check_map_size(char *line, t_game *game, int first);
 void	map_validation(t_game *game);
 void	characters_check(t_game *game);
+bool	walls_check(t_game *game);
+bool	check_bottom_wall(t_game *game);
 
 #endif

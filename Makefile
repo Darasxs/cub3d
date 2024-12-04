@@ -6,7 +6,7 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2024/11/25 16:25:00 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/12/04 09:01:25 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,14 +54,16 @@ $(LIBMLX_DIR):
 		git clone $(MLX_REPO) $(LIBMLX_DIR); \
 	fi
 
-$(NAME):	mlx $(OBJ) $(LIBFT) $(GNL)
+$(OBJ): %.o: %.c
 	@$(eval CURRENT := $(shell echo $$(($(CURRENT) + 1))))
 	@$(eval PERCENT := $(shell echo $$(($(CURRENT) * 100 / $(TOTAL_SRCS)))))
+	@printf "$(CLEAR_LINE)$(YELLOW)Compiling $(PERCENT)%% [$<]$(NC)\n"
+	@$(CC) $(FLAGS) -c $< -o $@
+
+$(NAME):	mlx $(OBJ) $(LIBFT) $(GNL)
 	@echo "------------------------------------------------"
-	@printf "$(CLEAR_LINE)$(YELLOW)Compiling $(PERCENT)%% [$(CURRENT)/$(TOTAL_SRCS)] $<$(NC)\n"
-	@$(CC) $(FLAGS) $(OBJ) $(MLX_FLAGS) -o $@ $(LIBFT) $(GNL)
 	@if [ ! -d $(NAME) ]; then \
-		echo "\n$(GREEN)$(NAME) compiled successfully!$(NC)"; \
+		echo "$(GREEN)$(NAME) compiled successfully!$(NC)"; \
 		echo "\n"; \
 		echo "run with: ./$(NAME)"; \
 		echo "------------------------------------------------"; \
