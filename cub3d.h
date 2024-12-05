@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/05 12:03:08 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:49:16 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,24 @@
 # include <math.h>
 // -lm flag in makefile ????
 
+/* ----------  struct for raycasting ---------- */
+
+typedef struct s_ray
+{
+	double	horizontal;
+	double	vertical;
+	double	ray_angle;
+	double	distance;
+	bool	wall_flag;
+}			t_ray;
+
 /* ----------  struct of the player ---------- */
 
 typedef struct s_player
 {
 	int		pixel_pos_y;
 	int		pixel_pos_x;
-	double	angle;
+	double	player_angle;
 	float	fov;
 }		t_player;
 
@@ -52,8 +63,8 @@ typedef struct s_game
 	int				y;
 	mlx_image_t		*img;
 	mlx_texture_t	*texture;
-	mlx_image_t		*to_img;
 	t_player		*player;
+	t_ray			*ray;
 }			t_game;
 
 /* ----------  map extenstion ---------- */
@@ -67,6 +78,7 @@ void	map_init(t_game *game, char *map_file);
 char	*map_read(t_game *game, char *map_file);
 int		file_descriptor_init(char *map, t_game *game);
 void	player_init(t_game *game);
+void	raycasting_init(t_game *game);
 
 /* ----------  map validation ---------- */
 
@@ -81,6 +93,7 @@ bool	check_bottom_wall(t_game *game);
 
 void	the_game(t_game *game, mlx_t *mlx);
 void	game_loop(void *param);
-//void	movement(void *param);
+void	player_movement(mlx_key_data_t keydata, void *param);
+void	raycasting(t_game *game);
 
 #endif

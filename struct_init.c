@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:48:05 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/05 12:04:58 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:31:14 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	struct_init(t_game *game)
 	game->map_height = 0;
 	game->img = NULL;
 	game->texture = NULL;
-	game->to_img = NULL;
 	game->player_counter = 0;
 	game->x = 0;
 	game->y = 0;
