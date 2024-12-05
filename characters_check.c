@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:48:16 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/05 15:54:10 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:31:49 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	increment_counters(t_game *game)
 
 void	character_check_logic(t_game *game)
 {
+	// printf("siema\n");
 	if (game->map[game->y][game->x] == '0'
 		|| game->map[game->y][game->x] == '1')
 		game->x++;
@@ -33,8 +34,10 @@ void	character_check_logic(t_game *game)
 		increment_counters(game);
 	else if (game->map[game->y][game->x] == 'W')
 		increment_counters(game);
-	else if (game->map[game->y][game->x] != ' '
-		&& game->map[game->y][game->x] != '\t')
+	else if (game->map[game->y][game->x] == ' '
+		|| game->map[game->y][game->x] == '\t')
+		game->x++;
+	else if (game->map[game->y][game->x])
 	{
 		printf("Error\n\"%c\" is an invalid character\n",
 			game->map[game->y][game->x]);

@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/05 15:52:46 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:47:41 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	raycasting_init(t_game *game);
 
 /* ----------  map validation ---------- */
 
-int		check_map_size(char *line, t_game *game, int first);
+int		check_map_size(char *line, t_game *game);
 void	map_validation(t_game *game);
 void	skip_whitespaces(t_game *game);
 void	characters_check(t_game *game);
@@ -90,6 +90,7 @@ void	increment_counters(t_game *game);
 int		parsing_logic(t_game *game);
 bool	check_first_row(t_game *game);
 bool	check_last_row(t_game *game);
+void	handle_map_error(char *lines, char *line, int fd, t_game *game);
 
 /* ----------  main logic ---------- */
 

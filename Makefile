@@ -6,7 +6,7 @@
 #    By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2024/12/05 15:51:39 by dpaluszk         ###   ########.fr        #
+#    Updated: 2024/12/05 17:48:21 by dpaluszk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC				=	main.c \
 					characters_check.c \
 					the_game.c \
 					player_movement.c \
-					raycasting.c
+					raycasting.c \
+					cleanup.c
 
 LIBMLX_DIR		=	./MLX42
 LIBFT_DIR		=	libft
