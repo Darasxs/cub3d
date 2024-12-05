@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:48:05 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/05 15:50:44 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:52:36 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,10 @@ void	struct_init(t_game *game)
 	game->y = 0;
 	game->player_pos_y = 0;
 	game->player_pos_x = 0;
+	game->key_w = false;
+	game->key_s = false;
+	game->key_a = false;
+	game->key_d = false;
+	game->key_left = false;
+	game->key_right = false;
 }

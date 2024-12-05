@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/05 15:38:05 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:55:32 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	player_init(t_game *game)
 	game->player->pixel_pos_x = game->player_pos_x * 50 + 50 / 2;
 	game->player->fov = (60 * M_PI) / 180;
 	game->player->player_angle = M_PI;
-	//???
+	//data can be modified
 }
 
 void	raycasting_init(t_game *game)
@@ -51,9 +51,50 @@ void	game_loop(void *param)
 	game = (t_game *)param;
 	mlx_delete_image(game->mlx, game->img);
 	game->img = mlx_new_image(game->mlx, 1920, 1080);
-	//hook the player
+	player_movement(game);
 	raycasting(game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
+}
+
+void	key_release(mlx_key_data_t keydata, t_game *game)
+{
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
+		game->key_w = false;
+	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE)
+		game->key_s = false;
+	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE)
+		game->key_a = false;
+	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE)
+		game->key_d = false;
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_RELEASE)
+		game->key_left = false;
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_RELEASE)
+		game->key_right = false;
+}
+
+void	mlx_key(mlx_key_data_t keydata, void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	{
+		//free everything
+		exit(0);
+	}
+	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+		game->key_w = true;
+	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+		game->key_s = true;
+	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+		game->key_a = true;
+	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+		game->key_d = true;
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+		game->key_left = true;
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+		game->key_right = true;
+	key_release(keydata, game);
 }
 
 void	the_game(t_game *game, mlx_t *mlx)
@@ -70,7 +111,7 @@ void	the_game(t_game *game, mlx_t *mlx)
 	player_init(game);
 	raycasting_init(game);
 	mlx_loop_hook(mlx, game_loop, game);
-	mlx_key_hook(mlx, &player_movement, game);
+	mlx_key_hook(mlx, &mlx_key, game);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 }

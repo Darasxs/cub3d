@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/05 17:47:41 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:51:58 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ typedef struct s_game
 	int				player_counter;
 	int				x;
 	int				y;
+	bool			key_w;
+	bool			key_s;
+	bool			key_a;
+	bool			key_d;
+	bool			key_left;
+	bool			key_right;
 	mlx_image_t		*img;
 	mlx_texture_t	*texture;
 	t_player		*player;
@@ -96,7 +102,10 @@ void	handle_map_error(char *lines, char *line, int fd, t_game *game);
 
 void	the_game(t_game *game, mlx_t *mlx);
 void	game_loop(void *param);
-void	player_movement(mlx_key_data_t keydata, void *param);
+void	player_movement(t_game *game);
 void	raycasting(t_game *game);
+void	mlx_key(mlx_key_data_t keydata, void *param);
+void	key_release(mlx_key_data_t keydata, t_game *game);
+void	rotate_player(t_game *game, bool direction);
 
 #endif
