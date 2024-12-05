@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
+#    By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2024/12/05 21:23:21 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/12/06 00:11:52 by dpaluszk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC				=	main.c \
 					player_movement.c \
 					raycasting.c \
 					cleanup.c \
+					parsing_init.c \
 					rendering_textures.c
 
 LIBMLX_DIR		=	./MLX42

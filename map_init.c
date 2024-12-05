@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/05 17:47:53 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 00:26:11 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,69 @@ int	file_descriptor_init(char *map, t_game *game)
 	return (fd);
 }
 
+bool	is_first_wall(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (line[0] != '1')
+		return (false);
+	return (true);
+}
+
 char	*map_read(t_game *game, char *map_file)
 {
-	char	*lines;
+	char	*map_lines;
+	char	*first_lines;
 	char	*line;
 	char	*tmp;
+	bool	map_started;
+	int		len;
 	int		fd;
 
+	len = 0;
+	map_started = false;
 	fd = file_descriptor_init(map_file, game);
 	line = get_next_line(fd);
-	lines = ft_calloc(1, 1);
+	map_lines = ft_calloc(1, 1);
+	if (!map_lines)
+		return (NULL);
+	first_lines = ft_calloc(1, 1);
+	if (!first_lines)
+		return (NULL);
 	if (!line || line[0] == '\n')
-		handle_map_error(lines, line, fd, game);
+		handle_map_error(map_lines, line, fd, game);
 	while (line)
 	{
-		tmp = lines;
-		lines = ft_strjoin(lines, line);
-		free(tmp);
-		if (check_map_size(line, game))
-			handle_map_error(lines, line, fd, game);
-		free(line);
-		line = get_next_line(fd);
+		if (is_first_wall(line) == true)
+			map_started = true;
+		if (map_started)
+		{
+			tmp = map_lines;
+			map_lines = ft_strjoin(map_lines, line);
+			free(tmp);
+			if (check_map_size(line, game))
+				handle_map_error(map_lines, line, fd, game);
+			free(line);
+			line = get_next_line(fd);
+		}
+		else
+		{
+			tmp = first_lines;
+			first_lines = ft_strjoin(first_lines, line);
+			free(tmp);
+			free(line);
+			if (is_first_wall(line) == true)
+				map_started = true;
+			line = get_next_line(fd);
+		}
 	}
 	close(fd);
-	return (lines);
+	game->first_lines = first_lines;
+	// printf("%s\n", game->first_lines);
+	// printf("\n\n\n\n\n\n");
+	// printf("%s\n", map_lines);
+	return (map_lines);
 }
 
 void	map_init(t_game *game, char *map_file)
@@ -72,6 +111,11 @@ void	map_init(t_game *game, char *map_file)
 	char	*lines;
 
 	lines = map_read(game, map_file);
+	if (!lines)
+	{
+		ft_putstr_fd("Error while reading the map\n", 2);
+		exit(1);
+	}
 	game->map = ft_split(lines, '\n');
 	if (!game->map)
 	{
@@ -81,4 +125,6 @@ void	map_init(t_game *game, char *map_file)
 		exit(1);
 	}
 	free(lines);
+	// parse_map_info(game);
+	map_validation(game);
 }

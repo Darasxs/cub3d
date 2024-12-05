@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/05 23:14:07 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/06 00:23:49 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,52 @@
 # define CUB3D_H
 
 # include "./MLX42/include/MLX42/MLX42.h"
-# include "./libft/libft.h"
 # include "./get_next_line/get_next_line.h"
-# include <stdlib.h>
-# include <stddef.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdio.h>
+# include "./libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
-# include <stdbool.h>
 # include <math.h>
+# include <stdbool.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 // -lm flag in makefile ????
 
 /* ----------  struct for raycasting ---------- */
 
 typedef struct s_ray
 {
-	double	horizontal;
-	double	vertical;
-	double	ray_angle;
-	double	distance;
-	bool	wall_flag;
-	double	y_step;
-	double	x_step;
-}			t_ray;
+	double			horizontal;
+	double			vertical;
+	double			ray_angle;
+	double			distance;
+	bool			wall_flag;
+	double			y_step;
+	double			x_step;
+}					t_ray;
 
 /* ----------  struct of the player ---------- */
 
 typedef struct s_player
 {
-	int		pixel_pos_y;
-	int		pixel_pos_x;
-	double	player_angle;
-	float	fov;
-}		t_player;
+	int				pixel_pos_y;
+	int				pixel_pos_x;
+	double			player_angle;
+	float			fov;
+}					t_player;
+
+/* ----------  struct of the map data ---------- */
+typedef struct s_parsing
+{
+	char			*no_texture;
+	char			*so_texture;
+	char			*ea_texture;
+	char			*we_texture;
+	int				f_color[3];
+	int				c_color[3];
+}					t_parsing;
 
 /* ----------  struct of the game ---------- */
 
@@ -73,44 +84,51 @@ typedef struct s_game
 	mlx_texture_t	*texture;
 	t_player		*player;
 	t_ray			*ray;
-}			t_game;
+	char			*first_lines;
+}					t_game;
 
 /* ----------  map extenstion ---------- */
 
-void	check_map_extension(char *str);
+void				check_map_extension(char *str);
 
 /* ----------  initializations ---------- */
 
-void	struct_init(t_game *game);
-void	map_init(t_game *game, char *map_file);
-char	*map_read(t_game *game, char *map_file);
-int		file_descriptor_init(char *map, t_game *game);
-void	player_init(t_game *game);
-void	raycasting_init(t_game *game);
+void				struct_init(t_game *game);
+void				parsing_struct_init(t_parsing *parsing_data);
+void				map_init(t_game *game, char *map_file);
+void				parsing_init(t_parsing *parsing_data, t_game *game);
+char				*map_read(t_game *game, char *map_file);
+int					file_descriptor_init(char *map, t_game *game);
+void				player_init(t_game *game);
+void				raycasting_init(t_game *game);
 
 /* ----------  map validation ---------- */
 
-int		check_map_size(char *line, t_game *game);
-void	map_validation(t_game *game);
-void	skip_whitespaces(t_game *game);
-void	characters_check(t_game *game);
-void	increment_counters(t_game *game);
-int		parsing_logic(t_game *game);
-bool	check_first_row(t_game *game);
-bool	check_last_row(t_game *game);
-void	handle_map_error(char *lines, char *line, int fd, t_game *game);
-
+void				map_validation(t_game *game);
+void				skip_whitespaces(t_game *game);
+void				characters_check(t_game *game);
+void				increment_counters(t_game *game);
+int					parsing_logic(t_game *game);
+bool				check_first_row(t_game *game);
+bool				check_last_row(t_game *game);
+void				handle_map_error(char *lines, char *line, int fd,
+						t_game *game);
+bool				is_first_wall(char *line);
+int					check_map_size(char *line, t_game *game);
 /* ----------  main logic ---------- */
 
-void	the_game(t_game *game, mlx_t *mlx);
-void	game_loop(void *param);
-void	player_movement(t_game *game);
-void	raycasting(t_game *game);
-void	mlx_key(mlx_key_data_t keydata, void *param);
-void	key_release(mlx_key_data_t keydata, t_game *game);
-void	rotate_player(t_game *game, bool direction);
-void	horizontal_intersection(t_game *game, t_ray *ray, t_player *player, double angle);
-void	vertical_intersection(t_game *game, t_ray *ray, t_player *player, double angle);
-void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_count);
+void				the_game(t_game *game, mlx_t *mlx);
+void				game_loop(void *param);
+void				player_movement(t_game *game);
+void				raycasting(t_game *game);
+void				mlx_key(mlx_key_data_t keydata, void *param);
+void				key_release(mlx_key_data_t keydata, t_game *game);
+void				rotate_player(t_game *game, bool direction);
+void				horizontal_intersection(t_game *game, t_ray *ray,
+						t_player *player, double angle);
+void				vertical_intersection(t_game *game, t_ray *ray,
+						t_player *player, double angle);
+void				rendering_textures(t_game *game, t_ray *ray,
+						t_player *player, int ray_count);
 
 #endif
