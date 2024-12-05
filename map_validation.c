@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/04 18:08:44 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:04:27 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,15 @@ bool	walls_check(t_game *game)
 	int	y;
 	int	x;
 
-	y = 0; 
+	y = 0;
 	x = 0;
 	while (game->map[y])
 	{
-		if (game->map[y][0] != '1' || game->map[y][game->column - 1] != '1')
+		if (game->map[y][0] != '1' || game->map[y][game->map_width - 1] != '1')
 			return (true);
 		if (check_bottom_wall(game))
 			return (true);
-		if (y == game->row - 1)
+		if (y == game->map_height - 1)
 		{
 			x = 0;
 			while (game->map[y][x])

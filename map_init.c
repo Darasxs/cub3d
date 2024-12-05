@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/04 16:51:24 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:04:07 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_map_size(char *line, t_game *game, int first)
 {
-	int		len;
+	int	len;
 
 	len = ft_strlen(line);
 	if (len == 0 || line[0] == '\n')
@@ -23,8 +23,8 @@ int	check_map_size(char *line, t_game *game, int first)
 		len--;
 	if (len != first)
 		return (1);
-	game->column = len;
-	game->row++;
+	game->map_width = len;
+	game->map_height++;
 	return (0);
 }
 
@@ -54,7 +54,7 @@ char	*map_read(t_game *game, char *map_file)
 	fd = file_descriptor_init(map_file, game);
 	line = get_next_line(fd);
 	first = ft_strlen(line) - 1;
-	lines = ft_strdup("");
+	lines = ft_calloc(1, 1);
 	if (!line || line[0] == '\n')
 	{
 		free(lines);
@@ -89,27 +89,11 @@ char	*map_read(t_game *game, char *map_file)
 void	map_init(t_game *game, char *map_file)
 {
 	char	*lines;
-	int		i;
 
 	lines = map_read(game, map_file);
 	game->map = ft_split(lines, '\n');
 	if (!game->map)
 	{
-		//free game struct
-		free(lines);
-		ft_putstr_fd("Error\nInvalid map\n", 2);
-		exit(1);
-	}
-	game->map_cpy = ft_split(lines, '\n');
-	i = 0;
-	if (!game->map_cpy)
-	{
-		while (game->map[i])
-		{
-			free(game->map[i]);
-			i++;
-		}
-		free(game->map);
 		//free game struct
 		free(lines);
 		ft_putstr_fd("Error\nInvalid map\n", 2);

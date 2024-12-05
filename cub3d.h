@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/04 17:33:30 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:03:08 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,33 @@
 # include <math.h>
 // -lm flag in makefile ????
 
+/* ----------  struct of the player ---------- */
+
+typedef struct s_player
+{
+	int		pixel_pos_y;
+	int		pixel_pos_x;
+	double	angle;
+	float	fov;
+}		t_player;
+
 /* ----------  struct of the game ---------- */
 
 typedef struct s_game
 {
-	mlx_t	*mlx;
-	char	**map;
-	char	**map_cpy;
-	int		column;
-	int		row;
-	int		player_counter;
-	int		x;
-	int		y;
+	mlx_t			*mlx;
+	char			**map;
+	int				map_width;
+	int				map_height;
+	int				player_pos_y;
+	int				player_pos_x;
+	int				player_counter;
+	int				x;
+	int				y;
+	mlx_image_t		*img;
+	mlx_texture_t	*texture;
+	mlx_image_t		*to_img;
+	t_player		*player;
 }			t_game;
 
 /* ----------  map extenstion ---------- */
@@ -51,6 +66,7 @@ void	struct_init(t_game *game);
 void	map_init(t_game *game, char *map_file);
 char	*map_read(t_game *game, char *map_file);
 int		file_descriptor_init(char *map, t_game *game);
+void	player_init(t_game *game);
 
 /* ----------  map validation ---------- */
 
@@ -61,8 +77,10 @@ void	increment_counters(t_game *game);
 bool	walls_check(t_game *game);
 bool	check_bottom_wall(t_game *game);
 
-/* ----------  main part ---------- */
+/* ----------  main logic ---------- */
 
-void	the_game(mlx_key_data_t keydata, void *param);
+void	the_game(t_game *game, mlx_t *mlx);
+void	game_loop(void *param);
+//void	movement(void *param);
 
 #endif

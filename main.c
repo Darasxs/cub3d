@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:28:49 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/04 16:37:05 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:03:46 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	player_init(t_game *game)
+{
+	game->player = ft_calloc(1, sizeof(t_player));
+	if (!game->player)
+	{
+		//free everything
+		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
+		exit(1);
+	}
+	game->player->pixel_pos_y = game->player_pos_y * 50 + 50 / 2;
+	game->player->pixel_pos_x = game->player_pos_x * 50 + 50 / 2;
+	game->player->fov = (60 * M_PI) / 180;
+	game->player->angle = M_PI;
+}
 
 int	main(int ac, char **av)
 {
@@ -29,20 +44,13 @@ int	main(int ac, char **av)
 		struct_init(game);
 		map_init(game, av[1]);
 		map_validation(game);
-		mlx_set_setting(MLX_STRETCH_IMAGE, true);
-		mlx = mlx_init(game->column * 50, game->row * 50, "cub3d", true);
-		if (!mlx)
-		{
-			ft_putstr_fd("Error\nwhile allocating memory\n", 2);
-			return (1);
-		}
-		game->mlx = mlx;
-		mlx_key_hook(mlx, &the_game, game);
-		mlx_loop(mlx);
-		mlx_terminate(mlx);
+		player_init(game);
+		the_game(game, mlx);
+		//free everything
 		free(game);
 		return (0);
 	}
+	//free everything
 	ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
 	return (1);
 }
