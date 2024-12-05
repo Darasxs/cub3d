@@ -6,7 +6,7 @@
 #    By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2024/12/04 17:34:40 by dpaluszk         ###   ########.fr        #
+#    Updated: 2024/12/04 17:48:38 by dpaluszk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC				=	main.c \
 					map_init.c \
 					struct_init.c \
 					map_validation.c \
+					validation_helper.c \
 					the_game.c
 
 LIBMLX_DIR		=	./MLX42

@@ -6,17 +6,11 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/04 17:46:15 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:08:44 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	increment_counters(t_game *game)
-{
-	game->x++;
-	game->player_counter++;
-}
 
 void	character_check_logic(t_game *game)
 {
@@ -77,7 +71,7 @@ bool	walls_check(t_game *game)
 	int	y;
 	int	x;
 
-	y = 0;
+	y = 0; 
 	x = 0;
 	while (game->map[y])
 	{
