@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/05 17:55:32 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/05 23:14:32 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	player_init(t_game *game)
 		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
 		exit(1);
 	}
-	game->player->pixel_pos_y = game->player_pos_y * 50 + 50 / 2;
-	game->player->pixel_pos_x = game->player_pos_x * 50 + 50 / 2;
+	game->player->pixel_pos_y = game->player_pos_y * 30 + 30 / 2;
+	game->player->pixel_pos_x = game->player_pos_x * 30 + 30 / 2;
 	game->player->fov = (60 * M_PI) / 180;
 	game->player->player_angle = M_PI;
 	//data can be modified
@@ -42,6 +42,8 @@ void	raycasting_init(t_game *game)
 	game->ray->ray_angle = 0;
 	game->ray->distance = 0;
 	game->ray->wall_flag = false;
+	game->ray->y_step = 0;
+	game->ray->x_step = 0;
 }
 
 void	game_loop(void *param)
@@ -50,7 +52,7 @@ void	game_loop(void *param)
 
 	game = (t_game *)param;
 	mlx_delete_image(game->mlx, game->img);
-	game->img = mlx_new_image(game->mlx, 1920, 1080);
+	game->img = mlx_new_image(game->mlx, 1900, 1000);
 	player_movement(game);
 	raycasting(game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
@@ -100,7 +102,7 @@ void	mlx_key(mlx_key_data_t keydata, void *param)
 void	the_game(t_game *game, mlx_t *mlx)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-	mlx = mlx_init(1920, 1080, "cub3d", true);
+	mlx = mlx_init(1900, 1000, "cub3d", true);
 	if (!mlx)
 	{
 		//free everything

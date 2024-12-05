@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/05 17:51:58 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/05 23:14:07 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_ray
 	double	ray_angle;
 	double	distance;
 	bool	wall_flag;
+	double	y_step;
+	double	x_step;
 }			t_ray;
 
 /* ----------  struct of the player ---------- */
@@ -107,5 +109,8 @@ void	raycasting(t_game *game);
 void	mlx_key(mlx_key_data_t keydata, void *param);
 void	key_release(mlx_key_data_t keydata, t_game *game);
 void	rotate_player(t_game *game, bool direction);
+void	horizontal_intersection(t_game *game, t_ray *ray, t_player *player, double angle);
+void	vertical_intersection(t_game *game, t_ray *ray, t_player *player, double angle);
+void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_count);
 
 #endif

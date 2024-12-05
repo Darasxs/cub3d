@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+         #
+#    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2024/12/05 17:48:21 by dpaluszk         ###   ########.fr        #
+#    Updated: 2024/12/05 21:23:21 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC				=	main.c \
 					the_game.c \
 					player_movement.c \
 					raycasting.c \
-					cleanup.c
+					cleanup.c \
+					rendering_textures.c
 
 LIBMLX_DIR		=	./MLX42
 LIBFT_DIR		=	libft
