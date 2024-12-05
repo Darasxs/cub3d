@@ -3,105 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/05 12:04:27 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:50:30 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	character_check_logic(t_game *game)
+bool	check_first_row(t_game *game)
 {
-	if (game->map[game->y][game->x] == '0'
-		|| game->map[game->y][game->x] == '1')
-		game->x++;
-	else if (game->map[game->y][game->x] == 'N')
-		increment_counters(game);
-	else if (game->map[game->y][game->x] == 'S')
-		increment_counters(game);
-	else if (game->map[game->y][game->x] == 'E')
-		increment_counters(game);
-	else if (game->map[game->y][game->x] == 'W')
-		increment_counters(game);
-	else if (game->map[game->y][game->x])
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (game->map[y][x])
 	{
-		printf("Error\n\"%c\" is an invalid character\n",
-			game->map[game->y][game->x]);
-		// free everything
-		exit(1);
+		if (game->map[y][x] != '1' && game->map[y][x] != ' '
+			&& game->map[y][x] != '\t')
+			return (false);
+		x++;
 	}
+	return (true);
 }
 
-void	characters_check(t_game *game)
+bool	check_last_row(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = game->map_height - 1;
+	while (game->map[y][x])
+	{
+		if (game->map[y][x] != '1' && game->map[y][x] != ' '
+			&& game->map[y][x] != '\t')
+			return (false);
+		x++;
+	}
+	return (true);
+}
+
+void	skip_whitespaces(t_game *game)
 {
 	while (game->map[game->y])
 	{
 		game->x = 0;
-		while (game->map[game->y][game->x])
-			character_check_logic(game);
-		game->y++;
-	}
-	if (game->player_counter != 1)
-	{
-		printf("Error\nThere must be one player in the game\n");
-		exit(1);
+		if (game->map[game->y][0] == ' ' || game->map[game->y][0] == '\t')
+			game->y++;
+		while (game->map[game->y][game->x] == ' '
+			|| game->map[game->y][game->x] == '\t')
+			game->x++;
 	}
 }
 
-bool	check_bottom_wall(t_game *game)
+int	parsing_logic(t_game *game)
 {
-	int	y;
-	int	x;
-
-	y = 0;
-	x = 0;
-	while (y == 0 && game->map[y][x])
+	if (check_first_row(game) == false)
+		return (1);
+	if (check_last_row(game) == false)
+		return (1);
+	while (game->map[game->y])
 	{
-		if (game->map[y][x] != '1')
-			return (true);
-		x++;
+		game->x = 0;
+		skip_whitespaces(game);
 	}
-	return (false);
-}
-
-bool	walls_check(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	x = 0;
-	while (game->map[y])
-	{
-		if (game->map[y][0] != '1' || game->map[y][game->map_width - 1] != '1')
-			return (true);
-		if (check_bottom_wall(game))
-			return (true);
-		if (y == game->map_height - 1)
-		{
-			x = 0;
-			while (game->map[y][x])
-			{
-				if (game->map[y][x] != '1')
-					return (true);
-				x++;
-			}
-		}
-		y++;
-	}
-	return (false);
+	return (0);
 }
 
 void	map_validation(t_game *game)
 {
 	characters_check(game);
-	if (walls_check(game))
+	if (parsing_logic(game) == 1)
 	{
 		ft_putstr_fd("Error\nMap is not surrounded by walls\n", 2);
 		// free everything
 		exit(1);
 	}
-	// teraz tutaj flood_fill
 }

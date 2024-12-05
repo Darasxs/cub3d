@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:48:05 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/05 14:31:14 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:50:44 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	struct_init(t_game *game)
 	game->player_counter = 0;
 	game->x = 0;
 	game->y = 0;
-	//need this from parsing
-	game->player_pos_y = 10;
-	game->player_pos_x = 10;
-	//
+	game->player_pos_y = 0;
+	game->player_pos_x = 0;
 }
