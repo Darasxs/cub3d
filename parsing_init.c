@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/06 02:25:44 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:47:19 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	split_ceiling(t_parsing *parsing_data)
 	}
 	free(colors);
 }
+
 void	split_floor(t_parsing *parsing_data)
 {
 	char	**colors;
@@ -46,6 +47,7 @@ void	split_floor(t_parsing *parsing_data)
 	}
 	free(colors);
 }
+
 void	colors_init(t_parsing *parsing_data)
 {
 	int	i;

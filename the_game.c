@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/05 23:14:32 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:43:38 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	game_loop(void *param)
 	game = (t_game *)param;
 	mlx_delete_image(game->mlx, game->img);
 	game->img = mlx_new_image(game->mlx, 1900, 1000);
-	player_movement(game);
+	player_movement(game, game->player);
 	raycasting(game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }

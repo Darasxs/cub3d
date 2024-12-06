@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:48:05 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/06 02:06:03 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:48:30 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	struct_init(t_game *game)
 	game->key_left = false;
 	game->key_right = false;
 }
+
 t_parsing	*parsing_struct_init(t_game *game)
 {
 	t_parsing	*parsing_data;

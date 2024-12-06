@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 02:24:10 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:42:35 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int					check_map_size(char *line, t_game *game);
 
 void				the_game(t_game *game, mlx_t *mlx);
 void				game_loop(void *param);
-void				player_movement(t_game *game);
+void				player_movement(t_game *game, t_player *player);
 void				raycasting(t_game *game);
 void				mlx_key(mlx_key_data_t keydata, void *param);
 void				key_release(mlx_key_data_t keydata, t_game *game);
@@ -137,5 +137,6 @@ void				vertical_intersection(t_game *game, t_ray *ray,
 						t_player *player, double angle);
 void				rendering_textures(t_game *game, t_ray *ray,
 						t_player *player, int ray_count);
+void				new_player_position(t_game *game, int new_y, int new_x);
 
 #endif

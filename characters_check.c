@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   characters_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:48:16 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/06 00:28:10 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:45:40 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	increment_counters(t_game *game)
 
 void	character_check_logic(t_game *game)
 {
-	// printf("siema\n");
 	if (game->map[game->y][game->x] == '0'
 		|| game->map[game->y][game->x] == '1')
 		game->x++;
