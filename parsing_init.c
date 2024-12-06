@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/06 10:47:19 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/06 12:55:49 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,18 @@ void	split_floor(t_parsing *parsing_data)
 void	colors_init(t_parsing *parsing_data)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (parsing_data->split_first_lines[i])
 	{
-		if (ft_strncmp(parsing_data->split_first_lines[i], "C", 1) == 0)
-			parsing_data->ceiling = parsing_data->split_first_lines[i];
-		if (ft_strncmp(parsing_data->split_first_lines[i], "F", 1) == 0)
-			parsing_data->floor = parsing_data->split_first_lines[i];
+		j = 0;
+		while(parsing_data->split_first_lines[i][j] == ' ')
+			j++;
+		if (ft_strncmp(parsing_data->split_first_lines[i] + j, "C", 1) == 0)
+			parsing_data->ceiling = parsing_data->split_first_lines[i] + j;
+		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "F", 1) == 0)
+			parsing_data->floor = parsing_data->split_first_lines[i] + j;
 		i++;
 	}
 	split_ceiling(parsing_data);
@@ -72,15 +76,6 @@ void	parsing_init(t_game *game)
 
 	parsing_data = parsing_struct_init(game);
 	i = 0;
-	if (!parsing_data)
-	{
-		if (!parsing_data->split_first_lines)
-		{
-			free(game->first_lines);
-			ft_putstr_fd("Error\nProblem with splitting first lines\n", 2);
-			exit(1);
-		}
-	}
 	free(game->first_lines);
 	while (parsing_data->split_first_lines[i])
 	{

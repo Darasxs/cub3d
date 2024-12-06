@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 10:46:55 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/06 12:50:25 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,6 @@ char	*map_read(t_game *game, char *map_file)
 	}
 	close(fd);
 	game->first_lines = first_lines;
-	// printf("%s\n", game->first_lines);
-	// printf("\n\n\n\n\n\n");
-	//printf("%s\n", map_lines);
 	return (map_lines);
 }
 
