@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 00:26:11 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 01:54:35 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,20 +102,22 @@ char	*map_read(t_game *game, char *map_file)
 	game->first_lines = first_lines;
 	// printf("%s\n", game->first_lines);
 	// printf("\n\n\n\n\n\n");
-	// printf("%s\n", map_lines);
+	//printf("%s\n", map_lines);
 	return (map_lines);
 }
 
 void	map_init(t_game *game, char *map_file)
 {
-	char	*lines;
-
+	char		*lines;
+	
 	lines = map_read(game, map_file);
 	if (!lines)
 	{
 		ft_putstr_fd("Error while reading the map\n", 2);
 		exit(1);
 	}
+	if (game->first_lines)
+		parsing_init(game);
 	game->map = ft_split(lines, '\n');
 	if (!game->map)
 	{
@@ -125,6 +127,5 @@ void	map_init(t_game *game, char *map_file)
 		exit(1);
 	}
 	free(lines);
-	// parse_map_info(game);
 	map_validation(game);
 }

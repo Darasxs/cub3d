@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:28:49 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 00:11:40 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 00:43:57 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int	main(int ac, char **av)
 {
 	mlx_t		*mlx;
 	t_game		*game;
-	t_parsing	*parsing_data;
 
-	parsing_data = NULL;
 	if (ac == 2)
 	{
 		check_map_extension(av[1]);
@@ -30,7 +28,6 @@ int	main(int ac, char **av)
 		}
 		struct_init(game);
 		map_init(game, av[1]);
-		parsing_init(parsing_data, game);
 		map_validation(game);
 		the_game(game, mlx);
 		// free everything

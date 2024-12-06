@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 00:23:49 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 01:10:07 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_parsing
 	char			*we_texture;
 	int				f_color[3];
 	int				c_color[3];
+	char			**split_first_lines;
 }					t_parsing;
 
 /* ----------  struct of the game ---------- */
@@ -94,9 +95,9 @@ void				check_map_extension(char *str);
 /* ----------  initializations ---------- */
 
 void				struct_init(t_game *game);
-void				parsing_struct_init(t_parsing *parsing_data);
+t_parsing			*parsing_struct_init(t_game *game);
 void				map_init(t_game *game, char *map_file);
-void				parsing_init(t_parsing *parsing_data, t_game *game);
+void				parsing_init(t_game *game);
 char				*map_read(t_game *game, char *map_file);
 int					file_descriptor_init(char *map, t_game *game);
 void				player_init(t_game *game);
