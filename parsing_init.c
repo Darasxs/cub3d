@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/06 12:55:49 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:09:25 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,29 @@ void	parsing_init(t_game *game)
 {
 	t_parsing	*parsing_data;
 	int			i;
+	int			j;
 
 	parsing_data = parsing_struct_init(game);
 	i = 0;
 	free(game->first_lines);
 	while (parsing_data->split_first_lines[i])
 	{
-		if (ft_strncmp(parsing_data->split_first_lines[i], "NO", 2) == 0)
-			parsing_data->no_texture = parsing_data->split_first_lines[i];
-		if (ft_strncmp(parsing_data->split_first_lines[i], "SO", 2) == 0)
-			parsing_data->so_texture = parsing_data->split_first_lines[i];
-		if (ft_strncmp(parsing_data->split_first_lines[i], "EA", 2) == 0)
-			parsing_data->ea_texture = parsing_data->split_first_lines[i];
-		if (ft_strncmp(parsing_data->split_first_lines[i], "WE", 2) == 0)
-			parsing_data->we_texture = parsing_data->split_first_lines[i];
+		j = 0;
+		while(parsing_data->split_first_lines[i][j] == ' ')
+			j++;
+		if (ft_strncmp(parsing_data->split_first_lines[i] + j, "NO", 2) == 0)
+			parsing_data->no_texture = parsing_data->split_first_lines[i] + j;
+		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "SO", 2) == 0)
+			parsing_data->so_texture = parsing_data->split_first_lines[i] + j;
+		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "EA", 2) == 0)
+			parsing_data->ea_texture = parsing_data->split_first_lines[i] + j;
+		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "WE", 2) == 0)
+			parsing_data->we_texture = parsing_data->split_first_lines[i] + j;
 		i++;
 	}
+	printf("%s\n", parsing_data->no_texture);
+	printf("%s\n", parsing_data->so_texture);
+	printf("%s\n", parsing_data->we_texture);
+	printf("%s\n", parsing_data->ea_texture);
 	colors_init(parsing_data);
 }
