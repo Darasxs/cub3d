@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 10:42:35 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:22:34 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void				handle_map_error(char *lines, char *line, int fd,
 						t_game *game);
 bool				is_first_wall(char *line);
 int					check_map_size(char *line, t_game *game);
+void				parse_paths(t_parsing *parsing_data);
 
 /* ----------  main logic ---------- */
 

@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/06 13:09:25 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:26:03 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,30 @@ void	colors_init(t_parsing *parsing_data)
 	while (parsing_data->split_first_lines[i])
 	{
 		j = 0;
-		while(parsing_data->split_first_lines[i][j] == ' ')
+		while (parsing_data->split_first_lines[i][j] == ' ')
 			j++;
 		if (ft_strncmp(parsing_data->split_first_lines[i] + j, "C", 1) == 0)
 			parsing_data->ceiling = parsing_data->split_first_lines[i] + j;
-		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "F", 1) == 0)
+		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "F",
+				1) == 0)
 			parsing_data->floor = parsing_data->split_first_lines[i] + j;
 		i++;
 	}
 	split_ceiling(parsing_data);
 	split_floor(parsing_data);
 }
+void	parse_paths(t_parsing *parsing_data)
+{
+	parsing_data->no_texture += 3;
+	parsing_data->so_texture += 3;
+	parsing_data->ea_texture += 3;
+	parsing_data->we_texture += 3;
 
+	printf("%s\n", parsing_data->no_texture);
+	printf("%s\n", parsing_data->ea_texture);
+	printf("%s\n", parsing_data->so_texture);
+	printf("%s\n", parsing_data->we_texture);
+}
 void	parsing_init(t_game *game)
 {
 	t_parsing	*parsing_data;
@@ -81,21 +93,22 @@ void	parsing_init(t_game *game)
 	while (parsing_data->split_first_lines[i])
 	{
 		j = 0;
-		while(parsing_data->split_first_lines[i][j] == ' ')
+		while (parsing_data->split_first_lines[i][j] == ' ')
 			j++;
 		if (ft_strncmp(parsing_data->split_first_lines[i] + j, "NO", 2) == 0)
 			parsing_data->no_texture = parsing_data->split_first_lines[i] + j;
-		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "SO", 2) == 0)
+		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "SO",
+				2) == 0)
 			parsing_data->so_texture = parsing_data->split_first_lines[i] + j;
-		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "EA", 2) == 0)
+		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "EA",
+				2) == 0)
 			parsing_data->ea_texture = parsing_data->split_first_lines[i] + j;
-		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "WE", 2) == 0)
+		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "WE",
+				2) == 0)
 			parsing_data->we_texture = parsing_data->split_first_lines[i] + j;
 		i++;
 	}
-	printf("%s\n", parsing_data->no_texture);
-	printf("%s\n", parsing_data->so_texture);
-	printf("%s\n", parsing_data->we_texture);
-	printf("%s\n", parsing_data->ea_texture);
+	printf("siema\n");
+	parse_paths(parsing_data);
 	colors_init(parsing_data);
 }

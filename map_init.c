@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 12:50:25 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:39:29 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,4 @@ void	map_init(t_game *game, char *map_file)
 		exit(1);
 	}
 	free(lines);
-	map_validation(game);
 }
