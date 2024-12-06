@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 01:10:07 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2024/12/06 02:24:10 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_parsing
 	char			*we_texture;
 	int				f_color[3];
 	int				c_color[3];
+	char			*floor;
+	char			*ceiling;
 	char			**split_first_lines;
 }					t_parsing;
 
@@ -98,10 +100,13 @@ void				struct_init(t_game *game);
 t_parsing			*parsing_struct_init(t_game *game);
 void				map_init(t_game *game, char *map_file);
 void				parsing_init(t_game *game);
+void				colors_init(t_parsing *parsing_data);
 char				*map_read(t_game *game, char *map_file);
 int					file_descriptor_init(char *map, t_game *game);
 void				player_init(t_game *game);
 void				raycasting_init(t_game *game);
+void				split_ceiling(t_parsing *parsing_data);
+void				split_floor(t_parsing *parsing_data);
 
 /* ----------  map validation ---------- */
 
@@ -116,6 +121,7 @@ void				handle_map_error(char *lines, char *line, int fd,
 						t_game *game);
 bool				is_first_wall(char *line);
 int					check_map_size(char *line, t_game *game);
+
 /* ----------  main logic ---------- */
 
 void				the_game(t_game *game, mlx_t *mlx);
