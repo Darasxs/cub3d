@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 13:39:29 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:34:05 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ char	*map_read(t_game *game, char *map_file)
 			first_lines = ft_strjoin(first_lines, line);
 			free(tmp);
 			free(line);
-			if (is_first_wall(line) == true)
-				map_started = true;
+			//if (is_first_wall(line) == true)
+			//	map_started = true;
 			line = get_next_line(fd);
 		}
 	}

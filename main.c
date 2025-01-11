@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:28:49 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 00:43:57 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:26:44 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int ac, char **av)
 {
-	mlx_t		*mlx;
-	t_game		*game;
+	mlx_t	*mlx;
+	t_game	*game;
 
 	if (ac == 2)
 	{

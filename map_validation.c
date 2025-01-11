@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 14:19:49 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:49:37 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 bool	check_first_row(t_game *game)
 {
 	int	x;
-	int	y;
 
 	x = 0;
-	y = 0;
-	while (game->map[y][x])
+	while (game->map[0][x])
 	{
-		if (game->map[y][x] != '1' && game->map[y][x] != ' '
-			&& game->map[y][x] != '\t')
+		if (game->map[0][x] != '1' && game->map[0][x] != ' '
+			&& game->map[0][x] != '\t')
 			return (false);
 		x++;
 	}
@@ -46,16 +44,17 @@ bool	check_last_row(t_game *game)
 	return (true);
 }
 
-void	skip_whitespaces(t_game *game)
+bool	skip_whitespaces(t_game *game)
 {
 	while (game->map[game->y])
 	{
 		game->x = 0;
-		if (game->map[game->y][0] == ' ' || game->map[game->y][0] == '\t')
-			game->y++;
 		while (game->map[game->y][game->x] == ' '
 			|| game->map[game->y][game->x] == '\t')
 			game->x++;
+		if (game->map[game->y][game->x] != '1')
+			return (false);
+		game->y++;
 	}
 }
 
@@ -65,11 +64,8 @@ int	parsing_logic(t_game *game)
 		return (1);
 	if (check_last_row(game) == false)
 		return (1);
-	while (game->map[game->y])
-	{
-		game->x = 0;
-		skip_whitespaces(game);
-	}
+	if (skip_whitespaces(game) == false)
+		return (1);
 	return (0);
 }
 void	map_validation(t_game *game)

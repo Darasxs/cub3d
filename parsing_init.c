@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/06 14:26:03 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:43:03 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	split_ceiling(t_parsing *parsing_data)
 	char	**colors;
 	int		i;
 
+	// ominac spacje po literce C
 	colors = ft_split(parsing_data->ceiling + 2, ',');
 	if (!colors)
 		return ;
@@ -35,6 +36,7 @@ void	split_floor(t_parsing *parsing_data)
 	char	**colors;
 	int		i;
 
+	// ominac spacje po literce F
 	colors = ft_split(parsing_data->floor + 2, ',');
 	if (!colors)
 		return ;
@@ -69,18 +71,20 @@ void	colors_init(t_parsing *parsing_data)
 	split_ceiling(parsing_data);
 	split_floor(parsing_data);
 }
+
 void	parse_paths(t_parsing *parsing_data)
 {
+	// ominac spacje jesli pojawiaja sie po NO/SO/WE/EA
 	parsing_data->no_texture += 3;
 	parsing_data->so_texture += 3;
 	parsing_data->ea_texture += 3;
 	parsing_data->we_texture += 3;
-
 	printf("%s\n", parsing_data->no_texture);
 	printf("%s\n", parsing_data->ea_texture);
 	printf("%s\n", parsing_data->so_texture);
 	printf("%s\n", parsing_data->we_texture);
 }
+
 void	parsing_init(t_game *game)
 {
 	t_parsing	*parsing_data;
@@ -108,7 +112,6 @@ void	parsing_init(t_game *game)
 			parsing_data->we_texture = parsing_data->split_first_lines[i] + j;
 		i++;
 	}
-	printf("siema\n");
 	parse_paths(parsing_data);
 	colors_init(parsing_data);
 }

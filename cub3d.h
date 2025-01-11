@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 14:22:34 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:48:33 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void				split_floor(t_parsing *parsing_data);
 /* ----------  map validation ---------- */
 
 void				map_validation(t_game *game);
-void				skip_whitespaces(t_game *game);
+bool				skip_whitespaces(t_game *game);
 void				characters_check(t_game *game);
 void				increment_counters(t_game *game);
 int					parsing_logic(t_game *game);

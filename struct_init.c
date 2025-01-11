@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:48:05 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/06 12:55:41 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:36:12 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ t_parsing	*parsing_struct_init(t_game *game)
 	parsing_data->c_color[2] = 0;
 	parsing_data->floor = NULL;
 	parsing_data->ceiling = NULL;
-	parsing_data->split_first_lines = NULL;
 	parsing_data->split_first_lines = ft_split(game->first_lines, '\n');
 	if (!parsing_data->split_first_lines)
 	{
