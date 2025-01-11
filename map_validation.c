@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/11 16:49:37 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:51:34 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ bool	skip_whitespaces(t_game *game)
 			return (false);
 		game->y++;
 	}
+	return (true);
 }
 
 int	parsing_logic(t_game *game)
@@ -77,4 +78,5 @@ void	map_validation(t_game *game)
 		// free everything
 		exit(1);
 	}
+	// sprawdzic jeszcze na koncu po prawej sronie czy mapa jest zamkneita jedynkami
 }
