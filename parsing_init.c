@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/13 10:40:47 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:30:12 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	colors_init(t_parsing *parsing_data)
 	while (parsing_data->split_first_lines[i])
 	{
 		j = 0;
-		while (parsing_data->split_first_lines[i][j] == ' ')
+		while (parsing_data->split_first_lines[i][j] == ' '
+			|| parsing_data->split_first_lines[i][j] == '\t')
 			j++;
 		if (ft_strncmp(parsing_data->split_first_lines[i] + j, "C", 1) == 0)
 			parsing_data->ceiling = parsing_data->split_first_lines[i] + j;
@@ -70,6 +71,12 @@ void	colors_init(t_parsing *parsing_data)
 	}
 	split_ceiling(parsing_data);
 	split_floor(parsing_data);
+	//printf("%d\n", parsing_data->c_color[0]);
+	//printf("%d\n", parsing_data->c_color[1]);
+	//printf("%d\n", parsing_data->c_color[2]);
+	//printf("%d\n", parsing_data->f_color[0]);
+	//printf("%d\n", parsing_data->f_color[1]);
+	//printf("%d\n", parsing_data->f_color[2]);
 }
 
 void	paths_spaces_check(t_parsing *parsing_data)
@@ -123,7 +130,8 @@ void	parsing_init(t_game *game)
 	while (parsing_data->split_first_lines[i])
 	{
 		j = 0;
-		while (parsing_data->split_first_lines[i][j] == ' ')
+		while (parsing_data->split_first_lines[i][j] == ' '
+			|| parsing_data->split_first_lines[i][j] == '\t')
 			j++;
 		if (ft_strncmp(parsing_data->split_first_lines[i] + j, "NO", 2) == 0)
 			parsing_data->no_texture = parsing_data->split_first_lines[i] + j;
