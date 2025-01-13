@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:07:06 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/13 16:12:37 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:48:50 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	rotate_player(t_game *game, bool direction)
 		if (player->player_angle > 2 * M_PI)
 			player->player_angle = player->player_angle + (2 * M_PI);
 	}
-	// data can be modified
 }
 
 void	new_player_position(t_game *game, int new_y, int new_x)
@@ -39,8 +38,8 @@ void	new_player_position(t_game *game, int new_y, int new_x)
 	t_player	*player;
 
 	player = game->player;
-	map_grid_y = roundf(player->pixel_pos_y + new_y) / 30;
-	map_grid_x = roundf(player->pixel_pos_x + new_x) / 30;
+	map_grid_y = roundf(player->pixel_pos_y + new_y) / CUBE_SIZE;
+	map_grid_x = roundf(player->pixel_pos_x + new_x) / CUBE_SIZE;
 	if (game->map[map_grid_y][map_grid_x] != '1')
 	{
 		player->pixel_pos_y = roundf(player->pixel_pos_y + new_y);

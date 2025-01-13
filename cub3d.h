@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/13 16:17:03 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:45:45 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@
 
 # define GAME_WIDTH 1920
 # define GAME_HEIGHT 1080
+# define CUBE_SIZE 1080
 # define PLAYER_FOV (66 * M_PI) / 180
-# define MOVEMENT_SPEED 3
-# define MOUSE_SENSITIVITY 0.03
+# define MOVEMENT_SPEED 100
+# define MOUSE_SENSITIVITY 0.04
 
 /* ----------  struct for raycasting ---------- */
 

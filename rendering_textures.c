@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:22:35 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/13 14:48:20 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:50:15 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_coun
 	double	original_top_pixel;
 	int		i;
 
-	wall_size = (30 / ray->distance) * ((GAME_WIDTH / 2) / tan(player->fov / 2));
+	wall_size = (CUBE_SIZE / ray->distance) * ((GAME_WIDTH / 2) / tan(player->fov / 2));
 	top_pixel = (GAME_HEIGHT / 2) - (wall_size / 2);
 	bottom_pixel = (GAME_HEIGHT / 2) + (wall_size / 2);
 	if (top_pixel < 0)
@@ -32,8 +32,8 @@ void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_coun
 		mlx_put_pixel(game->img, ray_count, top_pixel++, 0xF5F5F5FF);
 	i = bottom_pixel;
 	while (i < GAME_HEIGHT)
-		mlx_put_pixel(game->img, ray_count, i++, 0xB99470FF);//floor
+		mlx_put_pixel(game->img, ray_count, i++, 0xB99470FF); // floor
 	i = 0;
 	while (i < original_top_pixel)
-		mlx_put_pixel(game->img, ray_count, i++, 0x89CFF3FF);//ceiling
+		mlx_put_pixel(game->img, ray_count, i++, 0x89CFF3FF); // ceiling
 }
