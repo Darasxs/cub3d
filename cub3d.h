@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/13 14:31:03 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:17:03 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # include <string.h>
 # include <unistd.h>
 // -lm flag in makefile ????
+
+/* ----------  game options ---------- */
+
+# define GAME_WIDTH 1920
+# define GAME_HEIGHT 1080
+# define PLAYER_FOV (66 * M_PI) / 180
+# define MOVEMENT_SPEED 3
+# define MOUSE_SENSITIVITY 0.03
 
 /* ----------  struct for raycasting ---------- */
 

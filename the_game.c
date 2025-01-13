@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/06 10:43:38 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:48:26 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	player_init(t_game *game)
 	}
 	game->player->pixel_pos_y = game->player_pos_y * 30 + 30 / 2;
 	game->player->pixel_pos_x = game->player_pos_x * 30 + 30 / 2;
-	game->player->fov = (60 * M_PI) / 180;
+	game->player->fov = PLAYER_FOV;
 	game->player->player_angle = M_PI;
 	//data can be modified
 }
@@ -52,7 +52,7 @@ void	game_loop(void *param)
 
 	game = (t_game *)param;
 	mlx_delete_image(game->mlx, game->img);
-	game->img = mlx_new_image(game->mlx, 1900, 1000);
+	game->img = mlx_new_image(game->mlx, GAME_WIDTH, GAME_HEIGHT);
 	player_movement(game, game->player);
 	raycasting(game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
@@ -102,7 +102,7 @@ void	mlx_key(mlx_key_data_t keydata, void *param)
 void	the_game(t_game *game, mlx_t *mlx)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-	mlx = mlx_init(1900, 1000, "cub3d", true);
+	mlx = mlx_init(GAME_WIDTH, GAME_HEIGHT, "cub3d", true);
 	if (!mlx)
 	{
 		//free everything

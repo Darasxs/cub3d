@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:07:06 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 10:47:43 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:12:37 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	rotate_player(t_game *game, bool direction)
 	player = game->player;
 	if (direction)
 	{
-		player->player_angle = player->player_angle + 0.045;
+		player->player_angle = player->player_angle + MOUSE_SENSITIVITY;
 		if (player->player_angle > 2 * M_PI)
 			player->player_angle = player->player_angle - (2 * M_PI);
 	}
 	else
 	{
-		player->player_angle = player->player_angle - 0.045;
+		player->player_angle = player->player_angle - MOUSE_SENSITIVITY;
 		if (player->player_angle > 2 * M_PI)
 			player->player_angle = player->player_angle + (2 * M_PI);
 	}
@@ -57,23 +57,23 @@ void	player_movement(t_game *game, t_player *player)
 	new_x = 0;
 	if (game->key_w)
 	{
-		new_y = sin(player->player_angle) * 4;
-		new_x = cos(player->player_angle) * 4;
+		new_y = sin(player->player_angle) * MOVEMENT_SPEED;
+		new_x = cos(player->player_angle) * MOVEMENT_SPEED;
 	}
 	else if (game->key_s)
 	{
-		new_y = -sin(player->player_angle) * 4;
-		new_x = -cos(player->player_angle) * 4;
+		new_y = -sin(player->player_angle) * MOVEMENT_SPEED;
+		new_x = -cos(player->player_angle) * MOVEMENT_SPEED;
 	}
 	if (game->key_a)
 	{
-		new_y = -cos(player->player_angle) * 4;
-		new_x = sin(player->player_angle) * 4;
+		new_y = -cos(player->player_angle) * MOVEMENT_SPEED;
+		new_x = sin(player->player_angle) * MOVEMENT_SPEED;
 	}
 	else if (game->key_d)
 	{
-		new_y = cos(player->player_angle) * 4;
-		new_x = -sin(player->player_angle) * 4;
+		new_y = cos(player->player_angle) * MOVEMENT_SPEED;
+		new_x = -sin(player->player_angle) * MOVEMENT_SPEED;
 	}
 	if (new_y || new_x)
 		new_player_position(game, new_y, new_x);

@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:18:19 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/12/06 10:48:13 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:47:49 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	raycasting(t_game *game)
 	player = game->player;
 	ray->ray_angle = player->player_angle - (player->fov / 2);
 	ray_count = 0;
-	while (ray_count < 1900)
+	while (ray_count < GAME_WIDTH)
 	{
 		game->ray->wall_flag = false;
 		horizontal_intersection(game, ray, player, ray->ray_angle);
@@ -100,6 +100,6 @@ void	raycasting(t_game *game)
 			ray->distance = ray->vertical;
 		rendering_textures(game, ray, player, ray_count);
 		ray_count++;
-		ray->ray_angle = ray->ray_angle + (player->fov / 1900);
+		ray->ray_angle = ray->ray_angle + (player->fov / GAME_WIDTH);
 	}
 }
