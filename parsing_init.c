@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/11 15:43:03 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/13 10:40:47 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,43 @@ void	colors_init(t_parsing *parsing_data)
 	split_floor(parsing_data);
 }
 
+void	paths_spaces_check(t_parsing *parsing_data)
+{
+	int	i;
+
+	i = 0;
+	while (parsing_data->no_texture[i] == ' '
+		|| parsing_data->no_texture[i] == '\t')
+		i++;
+	parsing_data->no_texture += i;
+	i = 0;
+	while (parsing_data->so_texture[i] == ' '
+		|| parsing_data->so_texture[i] == '\t')
+		i++;
+	parsing_data->so_texture += i;
+	i = 0;
+	while (parsing_data->ea_texture[i] == ' '
+		|| parsing_data->ea_texture[i] == '\t')
+		i++;
+	parsing_data->ea_texture += i;
+	i = 0;
+	while (parsing_data->we_texture[i] == ' '
+		|| parsing_data->we_texture[i] == '\t')
+		i++;
+	parsing_data->we_texture += i;
+}
+
 void	parse_paths(t_parsing *parsing_data)
 {
-	// ominac spacje jesli pojawiaja sie po NO/SO/WE/EA
 	parsing_data->no_texture += 3;
 	parsing_data->so_texture += 3;
 	parsing_data->ea_texture += 3;
 	parsing_data->we_texture += 3;
-	printf("%s\n", parsing_data->no_texture);
-	printf("%s\n", parsing_data->ea_texture);
-	printf("%s\n", parsing_data->so_texture);
-	printf("%s\n", parsing_data->we_texture);
+	paths_spaces_check(parsing_data);
+	//printf("%s\n", parsing_data->no_texture);
+	//printf("%s\n", parsing_data->ea_texture);
+	//printf("%s\n", parsing_data->so_texture);
+	//printf("%s\n", parsing_data->we_texture);
 }
 
 void	parsing_init(t_game *game)
