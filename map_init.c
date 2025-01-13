@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/13 11:04:52 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/13 12:52:57 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ bool	is_first_wall(char *line)
 	int	i;
 
 	i = 0;
-	if (line[0] != '1')
+	while(line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] != '1')
 		return (false);
 	return (true);
 }
@@ -85,7 +87,7 @@ char	*map_read(t_game *game, char *map_file)
 			if (check_map_size(line, game))
 				handle_map_error(map_lines, line, fd, game);
 			free(line);
-			//printf("%s\n", line);
+			printf("%s\n", line);
 			line = get_next_line(fd);
 		}
 		else
