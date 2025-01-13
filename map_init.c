@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/13 12:52:57 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:29:56 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*map_read(t_game *game, char *map_file)
 			if (check_map_size(line, game))
 				handle_map_error(map_lines, line, fd, game);
 			free(line);
-			printf("%s\n", line);
+			//printf("%s\n", line);
 			line = get_next_line(fd);
 		}
 		else
@@ -119,7 +119,6 @@ void	map_init(t_game *game, char *map_file)
 	if (game->first_lines)
 		parsing_init(game);
 	game->map = ft_split(lines, '\n');
-	//printf("%s\n", game->map[11]);
 	if (!game->map)
 	{
 		// free game struct

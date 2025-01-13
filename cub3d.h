@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/11 16:48:33 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:31:03 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ void				handle_map_error(char *lines, char *line, int fd,
 bool				is_first_wall(char *line);
 int					check_map_size(char *line, t_game *game);
 void				parse_paths(t_parsing *parsing_data);
+void				paths_spaces_check(t_parsing *parsing_data);
+bool				check_rightmost_wall(t_game *game);
 
 /* ----------  main logic ---------- */
 

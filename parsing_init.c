@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/13 11:30:12 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:29:36 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	split_ceiling(t_parsing *parsing_data)
 	char	**colors;
 	int		i;
 
-	// ominac spacje po literce C
 	colors = ft_split(parsing_data->ceiling + 2, ',');
 	if (!colors)
 		return ;
@@ -36,7 +35,6 @@ void	split_floor(t_parsing *parsing_data)
 	char	**colors;
 	int		i;
 
-	// ominac spacje po literce F
 	colors = ft_split(parsing_data->floor + 2, ',');
 	if (!colors)
 		return ;
@@ -48,6 +46,23 @@ void	split_floor(t_parsing *parsing_data)
 		i++;
 	}
 	free(colors);
+}
+void	ceiling_floor_check(t_parsing *parsing_data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 3)
+	{
+		if ((parsing_data->f_color[i] < 0 || parsing_data->f_color[i] > 255)
+			|| parsing_data->c_color[i] < 0 || parsing_data->c_color[i] > 255)
+		{
+			ft_putstr_fd("Error\nColor range must be between 0 and 255! It means that there are 256x256x256 = 16777216. Please respect the rules.\n",
+				2);
+			exit(1);
+		}
+		i++;
+	}
 }
 
 void	colors_init(t_parsing *parsing_data)
@@ -71,12 +86,13 @@ void	colors_init(t_parsing *parsing_data)
 	}
 	split_ceiling(parsing_data);
 	split_floor(parsing_data);
-	//printf("%d\n", parsing_data->c_color[0]);
-	//printf("%d\n", parsing_data->c_color[1]);
-	//printf("%d\n", parsing_data->c_color[2]);
-	//printf("%d\n", parsing_data->f_color[0]);
-	//printf("%d\n", parsing_data->f_color[1]);
-	//printf("%d\n", parsing_data->f_color[2]);
+	ceiling_floor_check(parsing_data);
+	// printf("%d\n", parsing_data->c_color[0]);
+	// printf("%d\n", parsing_data->c_color[1]);
+	// printf("%d\n", parsing_data->c_color[2]);
+	// printf("%d\n", parsing_data->f_color[0]);
+	// printf("%d\n", parsing_data->f_color[1]);
+	// printf("%d\n", parsing_data->f_color[2]);
 }
 
 void	paths_spaces_check(t_parsing *parsing_data)
@@ -112,10 +128,10 @@ void	parse_paths(t_parsing *parsing_data)
 	parsing_data->ea_texture += 3;
 	parsing_data->we_texture += 3;
 	paths_spaces_check(parsing_data);
-	//printf("%s\n", parsing_data->no_texture);
-	//printf("%s\n", parsing_data->ea_texture);
-	//printf("%s\n", parsing_data->so_texture);
-	//printf("%s\n", parsing_data->we_texture);
+	// printf("%s\n", parsing_data->no_texture);
+	// printf("%s\n", parsing_data->ea_texture);
+	// printf("%s\n", parsing_data->so_texture);
+	// printf("%s\n", parsing_data->we_texture);
 }
 
 void	parsing_init(t_game *game)
