@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   characters_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:48:16 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/11 17:03:36 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:29:04 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	increment_counters(t_game *game)
 	game->x++;
 }
 
-// jest problem w map8.cub ze nie znajduje playera, zamienia to na '0'
 void	character_check_logic(t_game *game)
 {
 	if (game->map[game->y][game->x] == '0'

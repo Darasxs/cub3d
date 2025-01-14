@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:48:05 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/11 15:36:12 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:01:57 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	struct_init(t_game *game)
 	game->map = NULL;
 	game->map_width = 0;
 	game->map_height = 0;
-	game->img = NULL;
-	game->texture = NULL;
 	game->player_counter = 0;
 	game->x = 0;
 	game->y = 0;
@@ -30,6 +28,10 @@ void	struct_init(t_game *game)
 	game->key_d = false;
 	game->key_left = false;
 	game->key_right = false;
+	game->player = NULL;
+	game->ray = NULL;
+	game->parsing = NULL;
+	game->textures = NULL;
 }
 
 t_parsing	*parsing_struct_init(t_game *game)
@@ -42,10 +44,11 @@ t_parsing	*parsing_struct_init(t_game *game)
 		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
 		return (NULL);
 	}
-	parsing_data->no_texture = NULL;
-	parsing_data->so_texture = NULL;
-	parsing_data->ea_texture = NULL;
-	parsing_data->we_texture = NULL;
+	game->parsing = parsing_data;
+	parsing_data->no_path = NULL;
+	parsing_data->so_path = NULL;
+	parsing_data->ea_path = NULL;
+	parsing_data->we_path = NULL;
 	parsing_data->f_color[0] = 0;
 	parsing_data->f_color[1] = 0;
 	parsing_data->f_color[2] = 0;

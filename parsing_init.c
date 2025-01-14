@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/13 13:29:36 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:58:41 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,38 +100,34 @@ void	paths_spaces_check(t_parsing *parsing_data)
 	int	i;
 
 	i = 0;
-	while (parsing_data->no_texture[i] == ' '
-		|| parsing_data->no_texture[i] == '\t')
+	while (parsing_data->no_path[i] == ' '
+		|| parsing_data->no_path[i] == '\t')
 		i++;
-	parsing_data->no_texture += i;
+	parsing_data->no_path += i;
 	i = 0;
-	while (parsing_data->so_texture[i] == ' '
-		|| parsing_data->so_texture[i] == '\t')
+	while (parsing_data->so_path[i] == ' '
+		|| parsing_data->so_path[i] == '\t')
 		i++;
-	parsing_data->so_texture += i;
+	parsing_data->so_path += i;
 	i = 0;
-	while (parsing_data->ea_texture[i] == ' '
-		|| parsing_data->ea_texture[i] == '\t')
+	while (parsing_data->ea_path[i] == ' '
+		|| parsing_data->ea_path[i] == '\t')
 		i++;
-	parsing_data->ea_texture += i;
+	parsing_data->ea_path += i;
 	i = 0;
-	while (parsing_data->we_texture[i] == ' '
-		|| parsing_data->we_texture[i] == '\t')
+	while (parsing_data->we_path[i] == ' '
+		|| parsing_data->we_path[i] == '\t')
 		i++;
-	parsing_data->we_texture += i;
+	parsing_data->we_path += i;
 }
 
 void	parse_paths(t_parsing *parsing_data)
 {
-	parsing_data->no_texture += 3;
-	parsing_data->so_texture += 3;
-	parsing_data->ea_texture += 3;
-	parsing_data->we_texture += 3;
+	parsing_data->no_path += 3;
+	parsing_data->so_path += 3;
+	parsing_data->ea_path += 3;
+	parsing_data->we_path += 3;
 	paths_spaces_check(parsing_data);
-	// printf("%s\n", parsing_data->no_texture);
-	// printf("%s\n", parsing_data->ea_texture);
-	// printf("%s\n", parsing_data->so_texture);
-	// printf("%s\n", parsing_data->we_texture);
 }
 
 void	parsing_init(t_game *game)
@@ -150,16 +146,16 @@ void	parsing_init(t_game *game)
 			|| parsing_data->split_first_lines[i][j] == '\t')
 			j++;
 		if (ft_strncmp(parsing_data->split_first_lines[i] + j, "NO", 2) == 0)
-			parsing_data->no_texture = parsing_data->split_first_lines[i] + j;
+			parsing_data->no_path = parsing_data->split_first_lines[i] + j;
 		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "SO",
 				2) == 0)
-			parsing_data->so_texture = parsing_data->split_first_lines[i] + j;
+			parsing_data->so_path = parsing_data->split_first_lines[i] + j;
 		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "EA",
 				2) == 0)
-			parsing_data->ea_texture = parsing_data->split_first_lines[i] + j;
+			parsing_data->ea_path = parsing_data->split_first_lines[i] + j;
 		else if (ft_strncmp(parsing_data->split_first_lines[i] + j, "WE",
 				2) == 0)
-			parsing_data->we_texture = parsing_data->split_first_lines[i] + j;
+			parsing_data->we_path = parsing_data->split_first_lines[i] + j;
 		i++;
 	}
 	parse_paths(parsing_data);

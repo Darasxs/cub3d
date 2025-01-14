@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/13 18:13:42 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:04:02 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,47 +64,6 @@ void	game_loop(void *param)
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }
 
-void	key_release(mlx_key_data_t keydata, t_game *game)
-{
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
-		game->key_w = false;
-	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE)
-		game->key_s = false;
-	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE)
-		game->key_a = false;
-	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE)
-		game->key_d = false;
-	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_RELEASE)
-		game->key_left = false;
-	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_RELEASE)
-		game->key_right = false;
-}
-
-void	mlx_key(mlx_key_data_t keydata, void *param)
-{
-	t_game	*game;
-
-	game = (t_game *)param;
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-	{
-		//free everything
-		exit(0);
-	}
-	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-		game->key_w = true;
-	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-		game->key_s = true;
-	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-		game->key_a = true;
-	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-		game->key_d = true;
-	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		game->key_left = true;
-	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		game->key_right = true;
-	key_release(keydata, game);
-}
-
 void	the_game(t_game *game, mlx_t *mlx)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
@@ -118,6 +77,7 @@ void	the_game(t_game *game, mlx_t *mlx)
 	game->mlx = mlx;
 	player_init(game);
 	raycasting_init(game);
+	//rendering_init(game, game->parsing);
 	mlx_loop_hook(mlx, game_loop, game);
 	mlx_key_hook(mlx, &mlx_key, game);
 	mlx_loop(mlx);
