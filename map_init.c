@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 11:24:22 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:10:00 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	check_map_size(char *line, t_game *game)
 		return (1);
 	if (line[len - 1] == '\n')
 		len--;
-	game->map_width = len;
+	if (len > game->map_width)
+		game->map_width = len;
 	if (line[0] != '\n')
 		game->map_height++;
 	return (0);
