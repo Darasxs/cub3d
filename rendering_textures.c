@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:22:35 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 11:01:19 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:19:30 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_coun
 		mlx_put_pixel(game->img, ray_count, top_pixel++, 0xF5F5F5FF);
 	i = bottom_pixel;
 	while (i < GAME_HEIGHT)
-		mlx_put_pixel(game->img, ray_count, i++, 0xB99470FF); // floor
+		mlx_put_pixel(game->img, ray_count, i++, game->hexa_floor); // floor
 	i = 0;
 	while (i < original_top_pixel)
-		mlx_put_pixel(game->img, ray_count, i++, 0x89CFF3FF); // ceiling
+		mlx_put_pixel(game->img, ray_count, i++, game->hexa_ceiling); // ceiling
 }
 
 //void	load_textures(t_textures *textures, t_parsing *parsing)

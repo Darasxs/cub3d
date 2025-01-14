@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 13:52:10 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:18:35 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ typedef struct s_game
 	bool			key_left;
 	bool			key_right;
 	char			*first_lines;
+	unsigned int	hexa_floor;
+	unsigned int	hexa_ceiling;
 	mlx_image_t		*img;
 	t_player		*player;
 	t_ray			*ray;
@@ -124,7 +126,7 @@ void				struct_init(t_game *game);
 t_parsing			*parsing_struct_init(t_game *game);
 void				map_init(t_game *game, char *map_file);
 void				parsing_init(t_game *game);
-void				colors_init(t_parsing *parsing_data);
+void				colors_init(t_game *game, t_parsing *parsing_data);
 char				*map_read(t_game *game, char *map_file);
 int					file_descriptor_init(char *map, t_game *game);
 void				player_init(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/14 10:58:41 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:19:18 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ceiling_floor_check(t_parsing *parsing_data)
 	}
 }
 
-void	colors_init(t_parsing *parsing_data)
+void	colors_init(t_game *game, t_parsing *parsing_data)
 {
 	int	i;
 	int	j;
@@ -87,12 +87,8 @@ void	colors_init(t_parsing *parsing_data)
 	split_ceiling(parsing_data);
 	split_floor(parsing_data);
 	ceiling_floor_check(parsing_data);
-	// printf("%d\n", parsing_data->c_color[0]);
-	// printf("%d\n", parsing_data->c_color[1]);
-	// printf("%d\n", parsing_data->c_color[2]);
-	// printf("%d\n", parsing_data->f_color[0]);
-	// printf("%d\n", parsing_data->f_color[1]);
-	// printf("%d\n", parsing_data->f_color[2]);
+	game->hexa_floor = (parsing_data->f_color[0] << 24) | (parsing_data->f_color[1] << 16) | (parsing_data->f_color[2] << 8) | 0xFF;
+	game->hexa_ceiling = (parsing_data->c_color[0] << 24) | (parsing_data->c_color[1] << 16) | (parsing_data->c_color[2] << 8) | 0xFF;
 }
 
 void	paths_spaces_check(t_parsing *parsing_data)
@@ -159,5 +155,5 @@ void	parsing_init(t_game *game)
 		i++;
 	}
 	parse_paths(parsing_data);
-	colors_init(parsing_data);
+	colors_init(game, parsing_data);
 }
