@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/13 14:40:38 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:23:52 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ bool	check_rightmost_wall(t_game *game)
 		while (game->map[y][x])
 			x++;
 		x--;
-		while(game->map[y][x] == ' ' || game->map[y][x] == '\t')
+		while (game->map[y][x] == ' ' || game->map[y][x] == '\t')
 			x--;
-		if (game->map[y][x] != '1')
+		if (game->map[y][x] != '1' && game->map[y][x] != '\0')
 			return (false);
 		y++;
 	}
@@ -102,5 +102,4 @@ void	map_validation(t_game *game)
 		// free everything
 		exit(1);
 	}
-	// sprawdzic jeszcze na koncu po prawej sronie czy mapa jest zamkneita jedynkami
 }
