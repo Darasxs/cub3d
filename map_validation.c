@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 12:23:52 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:52:32 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,24 @@ bool	skip_whitespaces(t_game *game)
 	return (true);
 }
 
+bool	check_leftmost_wall(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (game->map[y])
+	{
+		x = 0;
+		while (game->map[y][x] == ' ' || game->map[y][x] == '\t')
+			x++;
+		if (game->map[y][x] != '1')
+			return (false);
+		y++;
+	}
+	return (true);
+}
+
 bool	check_rightmost_wall(t_game *game)
 {
 	int	x;
@@ -89,6 +107,8 @@ int	parsing_logic(t_game *game)
 	if (skip_whitespaces(game) == false)
 		return (1);
 	if (check_rightmost_wall(game) == false)
+		return (1);
+	if (check_leftmost_wall(game) == false)
 		return (1);
 	return (0);
 }
