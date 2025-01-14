@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 16:56:07 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:19:43 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ void				split_floor(t_parsing *parsing_data);
 /* ----------  map validation ---------- */
 
 void				map_validation(t_game *game);
-bool				skip_whitespaces(t_game *game);
 void				characters_check(t_game *game);
 void				increment_counters(t_game *game);
 int					parsing_logic(t_game *game);
