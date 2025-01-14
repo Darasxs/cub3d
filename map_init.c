@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/13 13:29:56 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:24:22 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ int	check_map_size(char *line, t_game *game)
 	int	len;
 
 	len = ft_strlen(line);
-	if (len == 0 || line[0] == '\n')
+	if (len == 0)
 		return (1);
 	if (line[len - 1] == '\n')
 		len--;
 	game->map_width = len;
-	game->map_height++;
+	if (line[0] != '\n')
+		game->map_height++;
 	return (0);
 }
 
