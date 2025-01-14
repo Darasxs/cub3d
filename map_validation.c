@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 13:52:32 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:26:33 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ bool	check_leftmost_wall(t_game *game)
 		x = 0;
 		while (game->map[y][x] == ' ' || game->map[y][x] == '\t')
 			x++;
-		if (game->map[y][x] != '1')
+		if (game->map[y][x] != '1' && game->map[y][x] != '\0')
 			return (false);
 		y++;
 	}
