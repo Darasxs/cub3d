@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/14 11:04:02 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:56:01 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	player_init(t_game *game)
 	}
 	game->player->pixel_pos_y = game->player_pos_y * CUBE_SIZE + CUBE_SIZE / 2;
 	game->player->pixel_pos_x = game->player_pos_x * CUBE_SIZE + CUBE_SIZE / 2;
-	game->player->fov = PLAYER_FOV;
 	if (game->map[game->player_pos_y][game->player_pos_x] == 'N')
 		game->player->player_angle = 90;
 	else if (game->map[game->player_pos_y][game->player_pos_x] == 'S')

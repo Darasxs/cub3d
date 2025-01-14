@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:22:35 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 14:19:30 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:55:52 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_coun
 	double	original_top_pixel;
 	int		i;
 
-	wall_size = (CUBE_SIZE / ray->distance) * ((GAME_WIDTH / 2) / tan(player->fov / 2));
+	wall_size = (CUBE_SIZE / ray->distance) * ((GAME_WIDTH / 2) / tan(PLAYER_FOV / 2));
 	top_pixel = (GAME_HEIGHT / 2) - (wall_size / 2);
 	bottom_pixel = (GAME_HEIGHT / 2) + (wall_size / 2);
 	if (top_pixel < 0)
@@ -84,7 +84,7 @@ void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_coun
 //    double texture_pos;
 //    int color;
 
-//    wall_size = (30 / ray->distance) * ((1900 / 2) / tan(player->fov / 2));
+//    wall_size = (30 / ray->distance) * ((1900 / 2) / tan(PLAYER_FOV / 2));
 //    top_pixel = (1000 / 2) - (wall_size / 2);
 //    bottom_pixel = (1000 / 2) + (wall_size / 2);
 //    if (top_pixel < 0)

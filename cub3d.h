@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 14:18:35 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:56:07 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ typedef struct s_player
 	int				pixel_pos_y;
 	int				pixel_pos_x;
 	double			player_angle;
-	float			fov;
 }					t_player;
 
 /* ----------  struct of the map data ---------- */

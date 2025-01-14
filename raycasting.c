@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:18:19 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/13 16:50:02 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:01:38 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	horizontal_intersection(t_game *game, t_ray *ray, t_player *player,
 	double	next_hor_y;
 	double	next_hor_x;
 
-	if (sin(angle) > 0) // Facing down
-		next_hor_y = floor(player->pixel_pos_y / CUBE_SIZE) * CUBE_SIZE + CUBE_SIZE;
-	else // Facing up
-		next_hor_y = floor(player->pixel_pos_y / CUBE_SIZE) * CUBE_SIZE - 1;
+	if (sin(angle) > 0)
+		next_hor_y = floor(player->pixel_pos_y / CUBE_SIZE) * CUBE_SIZE + CUBE_SIZE + 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
+	else
+		next_hor_y = floor(player->pixel_pos_y / CUBE_SIZE) * CUBE_SIZE - 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
 	next_hor_x = player->pixel_pos_x + (next_hor_y - player->pixel_pos_y)
 		/ tan(angle);
 	if (sin(angle) > 0)
@@ -50,10 +50,10 @@ void	vertical_intersection(t_game *game, t_ray *ray, t_player *player,
 	double	next_ver_y;
 	double	next_ver_x;
 
-	if (cos(angle) > 0) // Facing right
-		next_ver_x = floor(player->pixel_pos_x / CUBE_SIZE) * CUBE_SIZE + CUBE_SIZE;
-	else // Facing left
-		next_ver_x = floor(player->pixel_pos_x / CUBE_SIZE) * CUBE_SIZE - 1;
+	if (cos(angle) > 0)
+		next_ver_x = floor(player->pixel_pos_x / CUBE_SIZE) * CUBE_SIZE + CUBE_SIZE + 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
+	else
+		next_ver_x = floor(player->pixel_pos_x / CUBE_SIZE) * CUBE_SIZE - 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
 	next_ver_y = player->pixel_pos_y + (next_ver_x - player->pixel_pos_x)
 		* tan(angle);
 	if (cos(angle) > 0)
@@ -84,11 +84,11 @@ void	raycasting(t_game *game)
 
 	ray = game->ray;
 	player = game->player;
-	ray->ray_angle = player->player_angle - (player->fov / 2);
+	ray->ray_angle = player->player_angle - (PLAYER_FOV / 2);
 	ray_count = 0;
 	while (ray_count < GAME_WIDTH)
 	{
-		game->ray->wall_flag = false;
+		ray->wall_flag = false;
 		horizontal_intersection(game, ray, player, ray->ray_angle);
 		vertical_intersection(game, ray, player, ray->ray_angle);
 		if (ray->horizontal < ray->vertical)
@@ -100,6 +100,6 @@ void	raycasting(t_game *game)
 			ray->distance = ray->vertical;
 		rendering_textures(game, ray, player, ray_count);
 		ray_count++;
-		ray->ray_angle = ray->ray_angle + (player->fov / GAME_WIDTH);
+		ray->ray_angle = ray->ray_angle + (PLAYER_FOV / GAME_WIDTH);
 	}
 }
