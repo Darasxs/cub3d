@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/16 12:32:21 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:00:24 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ void				parse_paths(t_parsing *parsing_data);
 void				paths_spaces_check(t_parsing *parsing_data);
 bool				check_rightmost_wall(t_game *game);
 bool				check_leftmost_wall(t_game *game);
+bool				additional_wall_checks(t_game *game);
 
 /* ----------  main logic ---------- */
 
@@ -170,6 +171,7 @@ void				new_player_position(t_game *game, int new_y, int new_x);
 void				rendering_init(t_game *game, t_parsing *parsing);
 void				load_textures(t_textures *textures, t_parsing *parsing);
 void				texture_to_image(t_game *game, t_textures *textures);
-void 				remove_fishbowl_effect(t_game *game, t_ray *ray, t_player *player);
+void				remove_fishbowl_effect(t_game *game, t_ray *ray,
+						t_player *player);
 
 #endif
