@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/14 16:56:01 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:24:52 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ void	player_init(t_game *game)
 		game->player->player_angle = 180;
 	else
 		game->player->player_angle = 0;
+	//if (c == 'N')
+	//	mlx->ply->angle = 3 * M_PI / 2;
+	//if (c == 'S')
+	//	mlx->ply->angle = M_PI / 2;
+	//if (c == 'E')
+	//	mlx->ply->angle = 0;
+	//if (c == 'W')
+	//	mlx->ply->angle = M_PI;
 }
 
 void	raycasting_init(t_game *game)
@@ -56,11 +64,8 @@ void	game_loop(void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-	mlx_delete_image(game->mlx, game->img);
-	game->img = mlx_new_image(game->mlx, GAME_WIDTH, GAME_HEIGHT);
 	player_movement(game, game->player);
 	raycasting(game);
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }
 
 void	the_game(t_game *game, mlx_t *mlx)
@@ -74,11 +79,15 @@ void	the_game(t_game *game, mlx_t *mlx)
 		exit(1);
 	}
 	game->mlx = mlx;
+	game->img = mlx_new_image(game->mlx, GAME_WIDTH, GAME_HEIGHT);
 	player_init(game);
 	raycasting_init(game);
-	//rendering_init(game, game->parsing);
+	rendering_init(game, game->parsing);
+	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	mlx_loop_hook(mlx, game_loop, game);
 	mlx_key_hook(mlx, &mlx_key, game);
 	mlx_loop(mlx);
+	mlx_delete_image(game->mlx, game->img);
 	mlx_terminate(mlx);
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/16 13:00:24 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:23:40 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_textures
 	mlx_image_t		*so_image;
 	mlx_image_t		*ea_image;
 	mlx_image_t		*we_image;
+	int				x;
+	int				y;
 }					t_textures;
 
 /* ----------  struct for raycasting ---------- */
