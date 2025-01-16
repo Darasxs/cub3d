@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:07:06 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 10:59:15 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:33:08 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,32 @@ void	player_movement(t_game *game, t_player *player)
 {
 	int	new_y;
 	int	new_x;
+	int	shift;
 
 	new_y = 0;
 	new_x = 0;
+	shift = 1;
+	if (game->key_shift)
+		shift = 2;
 	if (game->key_w)
 	{
-		new_y = sin(player->player_angle) * MOVEMENT_SPEED;
-		new_x = cos(player->player_angle) * MOVEMENT_SPEED;
+		new_y = sin(player->player_angle) * MOVEMENT_SPEED * shift;
+		new_x = cos(player->player_angle) * MOVEMENT_SPEED * shift;
 	}
 	else if (game->key_s)
 	{
-		new_y = -sin(player->player_angle) * MOVEMENT_SPEED;
-		new_x = -cos(player->player_angle) * MOVEMENT_SPEED;
+		new_y = -sin(player->player_angle) * MOVEMENT_SPEED * shift;
+		new_x = -cos(player->player_angle) * MOVEMENT_SPEED * shift;
 	}
 	if (game->key_a)
 	{
-		new_y = -cos(player->player_angle) * MOVEMENT_SPEED;
-		new_x = sin(player->player_angle) * MOVEMENT_SPEED;
+		new_y = -cos(player->player_angle) * MOVEMENT_SPEED * shift;
+		new_x = sin(player->player_angle) * MOVEMENT_SPEED * shift;
 	}
 	else if (game->key_d)
 	{
-		new_y = cos(player->player_angle) * MOVEMENT_SPEED;
-		new_x = -sin(player->player_angle) * MOVEMENT_SPEED;
+		new_y = cos(player->player_angle) * MOVEMENT_SPEED * shift;
+		new_x = -sin(player->player_angle) * MOVEMENT_SPEED * shift;
 	}
 	if (new_y || new_x)
 		new_player_position(game, new_y, new_x);
@@ -96,6 +100,8 @@ void	key_release(mlx_key_data_t keydata, t_game *game)
 		game->key_left = false;
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_RELEASE)
 		game->key_right = false;
+	else if (keydata.key == MLX_KEY_LEFT_SHIFT && keydata.action == MLX_RELEASE)
+		game->key_shift = false;
 }
 
 void	mlx_key(mlx_key_data_t keydata, void *param)
@@ -120,5 +126,7 @@ void	mlx_key(mlx_key_data_t keydata, void *param)
 		game->key_left = true;
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		game->key_right = true;
+	else if (keydata.key == MLX_KEY_LEFT_SHIFT && keydata.action == MLX_PRESS)
+		game->key_shift = true;
 	key_release(keydata, game);
 }

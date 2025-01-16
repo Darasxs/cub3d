@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:22:35 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 16:55:52 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:30:29 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_coun
 		bottom_pixel = GAME_HEIGHT;
 	original_top_pixel = top_pixel;
 	while (top_pixel < bottom_pixel)
-		mlx_put_pixel(game->img, ray_count, top_pixel++, 0xF5F5F5FF);
+		mlx_put_pixel(game->img, ray_count, top_pixel++, 0x000000);
 	i = bottom_pixel;
 	while (i < GAME_HEIGHT)
 		mlx_put_pixel(game->img, ray_count, i++, game->hexa_floor); // floor
@@ -38,39 +38,38 @@ void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_coun
 		mlx_put_pixel(game->img, ray_count, i++, game->hexa_ceiling); // ceiling
 }
 
-//void	load_textures(t_textures *textures, t_parsing *parsing)
-//{
-//	textures->no_texture = mlx_load_png(parsing->no_path);
-//	textures->so_texture = mlx_load_png(parsing->so_path);
-//	textures->ea_texture = mlx_load_png(parsing->ea_path);
-//	textures->we_texture = mlx_load_png(parsing->we_path);
-//}
+void	load_textures(t_textures *textures, t_parsing *parsing)
+{
+	textures->no_texture = mlx_load_png(parsing->no_path);
+	textures->so_texture = mlx_load_png(parsing->so_path);
+	textures->ea_texture = mlx_load_png(parsing->ea_path);
+	textures->we_texture = mlx_load_png(parsing->we_path);
+}
 
-//void	texture_to_image(t_game *game, t_textures *textures)
-//{
-//	textures->no_image = mlx_texture_to_image(game->mlx, textures->no_texture);
-//	textures->so_image = mlx_texture_to_image(game->mlx, textures->so_texture);
-//	textures->ea_image = mlx_texture_to_image(game->mlx, textures->ea_texture);
-//	textures->we_image = mlx_texture_to_image(game->mlx, textures->we_texture);
-//}
+void	texture_to_image(t_game *game, t_textures *textures)
+{
+	textures->no_image = mlx_texture_to_image(game->mlx, textures->no_texture);
+	textures->so_image = mlx_texture_to_image(game->mlx, textures->so_texture);
+	textures->ea_image = mlx_texture_to_image(game->mlx, textures->ea_texture);
+	textures->we_image = mlx_texture_to_image(game->mlx, textures->we_texture);
+}
 
-//void	rendering_init(t_game *game, t_parsing *parsing)
-//{
-//	game->textures = ft_calloc(1, sizeof(t_textures));
-//	if (!game->textures)
-//	{
-//		//free everything
-//		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
-//		exit(1);
-//	}
-//	load_textures(game->textures, parsing);
-//	texture_to_image(game, game->textures);
-//	mlx_resize_image(game->textures->no_image, 30, 30);
-//	mlx_resize_image(game->textures->so_image, 30, 30);
-//	mlx_resize_image(game->textures->ea_image, 30, 30);
-//	mlx_resize_image(game->textures->we_image, 30, 30);
-//	//???
-//}
+void	rendering_init(t_game *game, t_parsing *parsing)
+{
+	game->textures = ft_calloc(1, sizeof(t_textures));
+	if (!game->textures)
+	{
+		//free everything
+		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
+		exit(1);
+	}
+	load_textures(game->textures, parsing);
+	texture_to_image(game, game->textures);
+	mlx_resize_image(game->textures->no_image, CUBE_SIZE, CUBE_SIZE);
+	mlx_resize_image(game->textures->so_image, CUBE_SIZE, CUBE_SIZE);
+	mlx_resize_image(game->textures->ea_image, CUBE_SIZE, CUBE_SIZE);
+	mlx_resize_image(game->textures->we_image, CUBE_SIZE, CUBE_SIZE);
+}
 
 //void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_count)
 //{

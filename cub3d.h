@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/16 10:32:24 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:32:21 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define GAME_WIDTH 1920
 # define GAME_HEIGHT 1080
 # define CUBE_SIZE 1080
-# define PLAYER_FOV (66 * M_PI) / 180
-# define MOVEMENT_SPEED 100
+# define PLAYER_FOV (60 * M_PI) / 180
+# define MOVEMENT_SPEED 50
 # define MOUSE_SENSITIVITY 0.04
 
 /* ----------  struct for textures ---------- */
@@ -105,6 +105,7 @@ typedef struct s_game
 	bool			key_d;
 	bool			key_left;
 	bool			key_right;
+	bool			key_shift;
 	char			*first_lines;
 	unsigned int	hexa_floor;
 	unsigned int	hexa_ceiling;
