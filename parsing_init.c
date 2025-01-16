@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/14 14:19:18 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:13:07 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ void	colors_init(t_game *game, t_parsing *parsing_data)
 			parsing_data->floor = parsing_data->split_first_lines[i] + j;
 		i++;
 	}
+	if (!parsing_data->ceiling || !parsing_data->floor)
+	{
+		ft_putstr_fd("Error\nInvalid map\n", 2);
+		exit(1);
+	}
 	split_ceiling(parsing_data);
 	split_floor(parsing_data);
 	ceiling_floor_check(parsing_data);
@@ -96,23 +101,19 @@ void	paths_spaces_check(t_parsing *parsing_data)
 	int	i;
 
 	i = 0;
-	while (parsing_data->no_path[i] == ' '
-		|| parsing_data->no_path[i] == '\t')
+	while (parsing_data->no_path[i] == ' ' || parsing_data->no_path[i] == '\t')
 		i++;
 	parsing_data->no_path += i;
 	i = 0;
-	while (parsing_data->so_path[i] == ' '
-		|| parsing_data->so_path[i] == '\t')
+	while (parsing_data->so_path[i] == ' ' || parsing_data->so_path[i] == '\t')
 		i++;
 	parsing_data->so_path += i;
 	i = 0;
-	while (parsing_data->ea_path[i] == ' '
-		|| parsing_data->ea_path[i] == '\t')
+	while (parsing_data->ea_path[i] == ' ' || parsing_data->ea_path[i] == '\t')
 		i++;
 	parsing_data->ea_path += i;
 	i = 0;
-	while (parsing_data->we_path[i] == ' '
-		|| parsing_data->we_path[i] == '\t')
+	while (parsing_data->we_path[i] == ' ' || parsing_data->we_path[i] == '\t')
 		i++;
 	parsing_data->we_path += i;
 }
@@ -153,6 +154,12 @@ void	parsing_init(t_game *game)
 				2) == 0)
 			parsing_data->we_path = parsing_data->split_first_lines[i] + j;
 		i++;
+	}
+	if (!parsing_data->no_path || !parsing_data->so_path
+		|| !parsing_data->ea_path || !parsing_data->we_path)
+	{
+		ft_putstr_fd("Error\nInvalid map\n", 2);
+		exit(1);
 	}
 	parse_paths(parsing_data);
 	colors_init(game, parsing_data);
