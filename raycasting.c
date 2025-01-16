@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:18:19 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 17:01:38 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:32:16 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,18 @@ void	vertical_intersection(t_game *game, t_ray *ray, t_player *player,
 	ray->vertical = INT_MAX; // No wall found -> large distance
 }
 
+void remove_fishbowl_effect(t_game *game, t_ray *ray, t_player *player)
+{
+	double	angle_result;
+
+	angle_result = ray->ray_angle - player->player_angle;
+	while (angle_result > M_PI)
+		angle_result = angle_result - 2 * M_PI;
+	while (angle_result < -M_PI)
+		angle_result = angle_result + 2 * M_PI;
+	ray->distance = ray->distance * cos(angle_result);
+}
+
 void	raycasting(t_game *game)
 {
 	t_ray		*ray;
@@ -98,6 +110,7 @@ void	raycasting(t_game *game)
 		}
 		else
 			ray->distance = ray->vertical;
+		remove_fishbowl_effect(game, ray, player);
 		rendering_textures(game, ray, player, ray_count);
 		ray_count++;
 		ray->ray_angle = ray->ray_angle + (PLAYER_FOV / GAME_WIDTH);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 17:19:43 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:32:24 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,5 +169,6 @@ void				new_player_position(t_game *game, int new_y, int new_x);
 void				rendering_init(t_game *game, t_parsing *parsing);
 void				load_textures(t_textures *textures, t_parsing *parsing);
 void				texture_to_image(t_game *game, t_textures *textures);
+void 				remove_fishbowl_effect(t_game *game, t_ray *ray, t_player *player);
 
 #endif
