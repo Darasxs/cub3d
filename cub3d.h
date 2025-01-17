@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/16 16:23:40 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:56:33 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ typedef struct s_ray
 	bool			wall_flag;
 	double			y_step;
 	double			x_step;
+	double			horizontal_y;
+	double			horizontal_x;
+	double			vertical_y;
+	double			vertical_x;
 }					t_ray;
 
 /* ----------  struct of the player ---------- */
@@ -96,8 +100,8 @@ typedef struct s_game
 	char			**map;
 	int				map_width;
 	int				map_height;
-	int				player_pos_y;
-	int				player_pos_x;
+	int				player_y;
+	int				player_x;
 	int				player_counter;
 	int				x;
 	int				y;

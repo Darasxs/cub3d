@@ -6,32 +6,61 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:22:35 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/16 16:24:25 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:58:27 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//int	x_coordinates(t_ray *ray)
-//{
-//	int	x;
-
-//	if (ray->horizontal < ray->vertical)
-//		x = (int)ray->x_step % CUBE_SIZE;
-//	else
-//		x = (int)ray->y_step % CUBE_SIZE;
-//	return (x);
-//}
-
-void render_wall(t_game *game, t_ray *ray, int ray_count, int top_pixel)
+int	x_coordinates(t_ray *ray)
 {
-	//int				step;
-	//t_textures		*textures;
+	int	x;
 
-	//textures = game->textures;
-	//textures->y = 0;
-	//textures->x = x_coordinates(ray);
-	mlx_put_pixel(game->img, ray_count, top_pixel, 0x000000);
+	if (ray->horizontal < ray->vertical)
+		x = (int)ray->horizontal_x % CUBE_SIZE;
+	else
+		x = (int)ray->vertical_y % CUBE_SIZE;
+	return (x);
+}
+
+unsigned int	calc_texture_color(int x, int y, t_ray *ray, t_game *game)
+{
+	unsigned int	index;
+	unsigned int	color;
+	unsigned int	rgba[4];
+
+	if (x < 0 || x >= game->textures->we_image->width ||
+		y < 0 || y >= game->textures->we_image->height)
+		return (0x000000FC);
+	index = (y * game->textures->we_image->width + x) * 4; //bytes for a single pixel
+	rgba[0] = game->textures->we_image->pixels[index];
+	rgba[1] = game->textures->we_image->pixels[index + 1];
+	rgba[2] = game->textures->we_image->pixels[index + 2];
+	rgba[3] = game->textures->we_image->pixels[index + 3];
+	color = (rgba[0] << 24) | (rgba[1] << 16) | (rgba[2] << 8) | rgba[3];
+	return (color);
+}
+
+void render_wall(t_game *game, t_ray *ray, int ray_count, int top_pixel, double wall_size)
+{
+	t_textures		*textures;
+	int				step;
+	int				i;
+
+	textures = game->textures;
+	textures->y = 0;
+	textures->x = x_coordinates(ray);
+	step = CUBE_SIZE / wall_size;
+	i = 0;
+	if (wall_size > GAME_HEIGHT)
+		textures->y = (wall_size - CUBE_SIZE / 2) * step;
+	while (wall_size && (top_pixel < CUBE_SIZE))
+	{
+		mlx_put_pixel(game->img, ray_count, top_pixel, calc_texture_color((int)textures->x, (int)textures->y, ray, game));
+		top_pixel++;
+		wall_size--;
+		textures->y = textures->y + step;
+	}
 }
 
 void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_count)
@@ -51,11 +80,7 @@ void	rendering_textures(t_game *game, t_ray *ray, t_player *player, int ray_coun
 	i = 0;
 	while (i < top_pixel)
 		mlx_put_pixel(game->img, ray_count, i++, game->hexa_ceiling); // ceiling
-	while (top_pixel < bottom_pixel)
-	{
-		render_wall(game, ray, ray_count, top_pixel);
-		top_pixel++;
-	}
+	render_wall(game, ray, ray_count, top_pixel, wall_size);
 	i = bottom_pixel;
 	while (i < GAME_HEIGHT)
 		mlx_put_pixel(game->img, ray_count, i++, game->hexa_floor); // floor

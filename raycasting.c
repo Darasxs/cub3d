@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:18:19 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/16 10:32:16 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:57:02 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,28 @@
 void	horizontal_intersection(t_game *game, t_ray *ray, t_player *player,
 		double angle)
 {
-	double	next_hor_y;
-	double	next_hor_x;
-
 	if (sin(angle) > 0)
-		next_hor_y = floor(player->pixel_pos_y / CUBE_SIZE) * CUBE_SIZE + CUBE_SIZE + 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
+		ray->horizontal_y = floor(player->pixel_pos_y / CUBE_SIZE) * CUBE_SIZE + CUBE_SIZE + 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
 	else
-		next_hor_y = floor(player->pixel_pos_y / CUBE_SIZE) * CUBE_SIZE - 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
-	next_hor_x = player->pixel_pos_x + (next_hor_y - player->pixel_pos_y)
+		ray->horizontal_y = floor(player->pixel_pos_y / CUBE_SIZE) * CUBE_SIZE - 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
+	ray->horizontal_x = player->pixel_pos_x + (ray->horizontal_y - player->pixel_pos_y)
 		/ tan(angle);
 	if (sin(angle) > 0)
 		ray->y_step = CUBE_SIZE; // Moving to the right
 	else
 		ray->y_step = -CUBE_SIZE; // Moving to the left
 	ray->x_step = ray->y_step / tan(angle);
-	while (next_hor_x >= 0 && next_hor_x < game->map_width * CUBE_SIZE
-		&& next_hor_y >= 0 && next_hor_y < game->map_height * CUBE_SIZE)
+	while (ray->horizontal_x >= 0 && ray->horizontal_x < game->map_width * CUBE_SIZE
+		&& ray->horizontal_y >= 0 && ray->horizontal_y < game->map_height * CUBE_SIZE)
 	{
-		if (game->map[(int)next_hor_y / CUBE_SIZE][(int)next_hor_x / CUBE_SIZE] == '1')
+		if (game->map[(int)ray->horizontal_y / CUBE_SIZE][(int)ray->horizontal_x / CUBE_SIZE] == '1')
 		{
-			ray->horizontal = hypot(next_hor_x - player->pixel_pos_x, next_hor_y
+			ray->horizontal = hypot(ray->horizontal_x - player->pixel_pos_x, ray->horizontal_y
 					- player->pixel_pos_y);
 			return ;
 		}
-		next_hor_x += ray->x_step;
-		next_hor_y += ray->y_step;
+		ray->horizontal_x += ray->x_step;
+		ray->horizontal_y += ray->y_step;
 	}
 	ray->horizontal = INT_MAX; // No wall found -> large distance
 }
@@ -47,31 +44,28 @@ void	horizontal_intersection(t_game *game, t_ray *ray, t_player *player,
 void	vertical_intersection(t_game *game, t_ray *ray, t_player *player,
 		double angle)
 {
-	double	next_ver_y;
-	double	next_ver_x;
-
 	if (cos(angle) > 0)
-		next_ver_x = floor(player->pixel_pos_x / CUBE_SIZE) * CUBE_SIZE + CUBE_SIZE + 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
+		ray->vertical_x = floor(player->pixel_pos_x / CUBE_SIZE) * CUBE_SIZE + CUBE_SIZE + 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
 	else
-		next_ver_x = floor(player->pixel_pos_x / CUBE_SIZE) * CUBE_SIZE - 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
-	next_ver_y = player->pixel_pos_y + (next_ver_x - player->pixel_pos_x)
+		ray->vertical_x = floor(player->pixel_pos_x / CUBE_SIZE) * CUBE_SIZE - 0.0001; // Add a small epsilon when determining grid boundaries to avoid off-by-one errors
+	ray->vertical_y = player->pixel_pos_y + (ray->vertical_x - player->pixel_pos_x)
 		* tan(angle);
 	if (cos(angle) > 0)
 		ray->x_step = CUBE_SIZE; // Moving to the right
 	else
 		ray->x_step = -CUBE_SIZE; // Moving to the left
 	ray->y_step = ray->x_step * tan(angle);
-	while (next_ver_x >= 0 && next_ver_x < game->map_width * CUBE_SIZE
-		&& next_ver_y >= 0 && next_ver_y < game->map_height * CUBE_SIZE)
+	while (ray->vertical_x >= 0 && ray->vertical_x < game->map_width * CUBE_SIZE
+		&& ray->vertical_y >= 0 && ray->vertical_y < game->map_height * CUBE_SIZE)
 	{
-		if (game->map[(int)next_ver_y / CUBE_SIZE][(int)next_ver_x / CUBE_SIZE] == '1')
+		if (game->map[(int)ray->vertical_y / CUBE_SIZE][(int)ray->vertical_x / CUBE_SIZE] == '1')
 		{
-			ray->vertical = hypot(next_ver_x - player->pixel_pos_x, next_ver_y
+			ray->vertical = hypot(ray->vertical_x - player->pixel_pos_x, ray->vertical_y
 					- player->pixel_pos_y);
 			return ;
 		}
-		next_ver_x += ray->x_step;
-		next_ver_y += ray->y_step;
+		ray->vertical_x += ray->x_step;
+		ray->vertical_y += ray->y_step;
 	}
 	ray->vertical = INT_MAX; // No wall found -> large distance
 }

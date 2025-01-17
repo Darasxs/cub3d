@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:48:16 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/14 10:29:04 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:56:06 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	increment_counters(t_game *game)
 {
-	game->player_pos_x = game->x;
-	game->player_pos_y = game->y;
+	game->player_x = game->x;
+	game->player_y = game->y;
 	game->player_counter++;
 	game->x++;
 }

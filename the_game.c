@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/16 16:24:52 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:57:58 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	player_init(t_game *game)
 		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
 		exit(1);
 	}
-	game->player->pixel_pos_y = game->player_pos_y * CUBE_SIZE + CUBE_SIZE / 2;
-	game->player->pixel_pos_x = game->player_pos_x * CUBE_SIZE + CUBE_SIZE / 2;
-	if (game->map[game->player_pos_y][game->player_pos_x] == 'N')
+	game->player->pixel_pos_y = game->player_y * CUBE_SIZE + CUBE_SIZE / 2;
+	game->player->pixel_pos_x = game->player_x * CUBE_SIZE + CUBE_SIZE / 2;
+	if (game->map[game->player_y][game->player_x] == 'N')
 		game->player->player_angle = 90;
-	else if (game->map[game->player_pos_y][game->player_pos_x] == 'S')
+	else if (game->map[game->player_y][game->player_x] == 'S')
 		game->player->player_angle = 270;
-	else if (game->map[game->player_pos_y][game->player_pos_x] == 'W')
+	else if (game->map[game->player_y][game->player_x] == 'W')
 		game->player->player_angle = 180;
 	else
 		game->player->player_angle = 0;

@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:48:05 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/14 11:01:57 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:57:48 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	struct_init(t_game *game)
 	game->player_counter = 0;
 	game->x = 0;
 	game->y = 0;
-	game->player_pos_y = 0;
-	game->player_pos_x = 0;
+	game->player_y = 0;
+	game->player_x = 0;
 	game->key_w = false;
 	game->key_s = false;
 	game->key_a = false;
