@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:42:20 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/16 15:13:07 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:26:27 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	split_floor(t_parsing *parsing_data)
 	}
 	free(colors);
 }
+
 void	ceiling_floor_check(t_parsing *parsing_data)
 {
 	int	i;
@@ -159,6 +160,7 @@ void	parsing_init(t_game *game)
 		|| !parsing_data->ea_path || !parsing_data->we_path)
 	{
 		ft_putstr_fd("Error\nInvalid map\n", 2);
+		// free everything
 		exit(1);
 	}
 	parse_paths(parsing_data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/16 14:28:16 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:21:02 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ bool	additional_wall_checks(t_game *game)
 					&& game->map[y][x] == '0')
 					return (false);
 				if (game->map[y + 1] && ((game->map[y + 1][x] == ' '
-							|| game->map[y + 1][x] == '\t')
+						|| game->map[y + 1][x] == '\t')
 						&& game->map[y][x] == '0'))
 					return (false);
 			}

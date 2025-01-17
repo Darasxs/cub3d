@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/14 12:10:00 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:26:12 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	file_descriptor_init(char *map, t_game *game)
 	if (fd == -1)
 	{
 		(void)game;
-		// free game struct
 		ft_putstr_fd("Error\nwith the file descriptor\n", 2);
+		// free game struct
 		exit(1);
 	}
 	return (fd);
@@ -48,7 +48,7 @@ bool	is_first_wall(char *line)
 	int	i;
 
 	i = 0;
-	while(line[i] == ' ' || line[i] == '\t')
+	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (line[i] != '1')
 		return (false);
@@ -89,7 +89,6 @@ char	*map_read(t_game *game, char *map_file)
 			if (check_map_size(line, game))
 				handle_map_error(map_lines, line, fd, game);
 			free(line);
-			//printf("%s\n", line);
 			line = get_next_line(fd);
 		}
 		else
@@ -98,8 +97,6 @@ char	*map_read(t_game *game, char *map_file)
 			first_lines = ft_strjoin(first_lines, line);
 			free(tmp);
 			free(line);
-			//if (is_first_wall(line) == true)
-			//	map_started = true;
 			line = get_next_line(fd);
 		}
 	}
@@ -110,12 +107,13 @@ char	*map_read(t_game *game, char *map_file)
 
 void	map_init(t_game *game, char *map_file)
 {
-	char		*lines;
+	char	*lines;
 
 	lines = map_read(game, map_file);
 	if (!lines)
 	{
 		ft_putstr_fd("Error while reading the map\n", 2);
+		// free everything
 		exit(1);
 	}
 	if (game->first_lines)
@@ -123,9 +121,9 @@ void	map_init(t_game *game, char *map_file)
 	game->map = ft_split(lines, '\n');
 	if (!game->map)
 	{
-		// free game struct
 		free(lines);
 		ft_putstr_fd("Error\nInvalid map\n", 2);
+		// free everything
 		exit(1);
 	}
 	free(lines);

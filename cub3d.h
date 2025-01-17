@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/17 12:39:34 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:25:24 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-// -lm flag in makefile ????
 
 /* ----------  game options ---------- */
 

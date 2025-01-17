@@ -6,11 +6,30 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:07:06 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/16 12:33:08 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:29:17 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+//void	rotate_player(t_game *game, bool direction)
+//{
+//	t_player	*player;
+
+//	player = game->player;
+//	if (direction)
+//	{
+//		player->player_angle = player->player_angle + MOUSE_SENSITIVITY;
+//		if (player->player_angle > 2 * M_PI)
+//			player->player_angle = player->player_angle - (2 * M_PI);
+//	}
+//	else
+//	{
+//		player->player_angle = player->player_angle - MOUSE_SENSITIVITY;
+//		if (player->player_angle > 2 * M_PI)
+//			player->player_angle = player->player_angle + (2 * M_PI);
+//	}
+//}
 
 void	rotate_player(t_game *game, bool direction)
 {
@@ -18,17 +37,12 @@ void	rotate_player(t_game *game, bool direction)
 
 	player = game->player;
 	if (direction)
-	{
 		player->player_angle = player->player_angle + MOUSE_SENSITIVITY;
-		if (player->player_angle > 2 * M_PI)
-			player->player_angle = player->player_angle - (2 * M_PI);
-	}
 	else
-	{
 		player->player_angle = player->player_angle - MOUSE_SENSITIVITY;
-		if (player->player_angle > 2 * M_PI)
-			player->player_angle = player->player_angle + (2 * M_PI);
-	}
+	player->player_angle = fmod(player->player_angle, 360.0);
+	if (player->player_angle < 0.0)
+		player->player_angle += 360.0;
 }
 
 void	new_player_position(t_game *game, int new_y, int new_x)
@@ -111,6 +125,7 @@ void	mlx_key(mlx_key_data_t keydata, void *param)
 	game = (t_game *)param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
+		printf("\nCub3d has been closed\n\n");
 		//free everything
 		exit(0);
 	}

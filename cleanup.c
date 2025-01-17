@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:48:03 by dpaluszk          #+#    #+#             */
-/*   Updated: 2024/12/06 10:45:56 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:25:14 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handle_map_error(char *lines, char *line, int fd, t_game *game)
 	if (line[0] == '\n')
 		free(line);
 	close(fd);
-	// free game struct
+	// free everything
 	ft_putstr_fd("Error\nInvalid map\n", 2);
 	exit(1);
 }
