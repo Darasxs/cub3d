@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/17 11:56:33 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:39:34 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define PLAYER_FOV (60 * M_PI) / 180
 # define MOVEMENT_SPEED 50
 # define MOUSE_SENSITIVITY 0.04
+# define BYTES_FOR_PIXEL 4
 
 /* ----------  struct for textures ---------- */
 

@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:22:35 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/17 11:58:27 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:39:47 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ unsigned int	calc_texture_color(int x, int y, t_ray *ray, t_game *game)
 	if (x < 0 || x >= game->textures->we_image->width ||
 		y < 0 || y >= game->textures->we_image->height)
 		return (0x000000FC);
-	index = (y * game->textures->we_image->width + x) * 4; //bytes for a single pixel
+	index = (y * game->textures->we_image->width + x) * BYTES_FOR_PIXEL;
 	rgba[0] = game->textures->we_image->pixels[index];
 	rgba[1] = game->textures->we_image->pixels[index + 1];
 	rgba[2] = game->textures->we_image->pixels[index + 2];
@@ -43,23 +43,25 @@ unsigned int	calc_texture_color(int x, int y, t_ray *ray, t_game *game)
 
 void render_wall(t_game *game, t_ray *ray, int ray_count, int top_pixel, double wall_size)
 {
-	t_textures		*textures;
-	int				step;
-	int				i;
+	t_textures	*textures;
+	double		step;
+	double		texture_pos;
+	int			texture_height;
 
 	textures = game->textures;
-	textures->y = 0;
 	textures->x = x_coordinates(ray);
-	step = CUBE_SIZE / wall_size;
-	i = 0;
+	texture_height = game->textures->we_image->height;
+	step = (double)texture_height / wall_size;
+	texture_pos = 0;
 	if (wall_size > GAME_HEIGHT)
-		textures->y = (wall_size - CUBE_SIZE / 2) * step;
-	while (wall_size && (top_pixel < CUBE_SIZE))
+		texture_pos = (wall_size - GAME_HEIGHT) / 2 * step;
+	while (wall_size > 0 && top_pixel < GAME_HEIGHT)
 	{
-		mlx_put_pixel(game->img, ray_count, top_pixel, calc_texture_color((int)textures->x, (int)textures->y, ray, game));
+		unsigned int color = calc_texture_color((int)textures->x, (int)texture_pos, ray, game);
+		mlx_put_pixel(game->img, ray_count, top_pixel, color);
 		top_pixel++;
 		wall_size--;
-		textures->y = textures->y + step;
+		texture_pos += step;
 	}
 }
 
