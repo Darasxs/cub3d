@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:48:05 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/17 11:57:48 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/19 14:10:27 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,24 @@ void	struct_init(t_game *game)
 	game->key_d = false;
 	game->key_left = false;
 	game->key_right = false;
+	game->map_started = false;
 	game->player = NULL;
 	game->ray = NULL;
 	game->parsing = NULL;
 	game->textures = NULL;
+}
+
+t_parsing	*parsing_struct_init_helper(t_parsing *parsing_data)
+{
+	parsing_data->f_color[0] = 0;
+	parsing_data->f_color[1] = 0;
+	parsing_data->f_color[2] = 0;
+	parsing_data->c_color[0] = 0;
+	parsing_data->c_color[1] = 0;
+	parsing_data->c_color[2] = 0;
+	parsing_data->floor = NULL;
+	parsing_data->ceiling = NULL;
+	return (parsing_data);
 }
 
 t_parsing	*parsing_struct_init(t_game *game)
@@ -49,14 +63,7 @@ t_parsing	*parsing_struct_init(t_game *game)
 	parsing_data->so_path = NULL;
 	parsing_data->ea_path = NULL;
 	parsing_data->we_path = NULL;
-	parsing_data->f_color[0] = 0;
-	parsing_data->f_color[1] = 0;
-	parsing_data->f_color[2] = 0;
-	parsing_data->c_color[0] = 0;
-	parsing_data->c_color[1] = 0;
-	parsing_data->c_color[2] = 0;
-	parsing_data->floor = NULL;
-	parsing_data->ceiling = NULL;
+	parsing_struct_init_helper(parsing_data);
 	parsing_data->split_first_lines = ft_split(game->first_lines, '\n');
 	if (!parsing_data->split_first_lines)
 	{

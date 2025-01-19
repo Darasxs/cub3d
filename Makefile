@@ -6,7 +6,7 @@
 #    By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2025/01/19 12:57:55 by dpaluszk         ###   ########.fr        #
+#    Updated: 2025/01/19 14:21:16 by dpaluszk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,10 @@ NAME			=	cub3d
 SRC				=	main.c \
 					check_map_extension.c \
 					map_init.c \
+					map_init_helper.c \
 					struct_init.c \
 					map_validation.c \
+					map_validation_helper.c \
 					characters_check.c \
 					the_game.c \
 					player_movement.c \

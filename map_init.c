@@ -3,103 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/17 15:26:12 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/19 14:19:51 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_map_size(char *line, t_game *game)
-{
-	int	len;
-
-	len = ft_strlen(line);
-	if (len == 0)
-		return (1);
-	if (line[len - 1] == '\n')
-		len--;
-	if (len > game->map_width)
-		game->map_width = len;
-	if (line[0] != '\n')
-		game->map_height++;
-	return (0);
-}
-
-int	file_descriptor_init(char *map, t_game *game)
-{
-	int	fd;
-
-	fd = open(map, O_RDONLY);
-	if (fd == -1)
-	{
-		(void)game;
-		ft_putstr_fd("Error\nwith the file descriptor\n", 2);
-		// free game struct
-		exit(1);
-	}
-	return (fd);
-}
-
-bool	is_first_wall(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	if (line[i] != '1')
-		return (false);
-	return (true);
-}
-
 char	*map_read(t_game *game, char *map_file)
 {
 	char	*map_lines;
 	char	*first_lines;
-	char	*line;
-	char	*tmp;
-	bool	map_started;
-	int		len;
 	int		fd;
 
-	len = 0;
-	map_started = false;
 	fd = file_descriptor_init(map_file, game);
-	line = get_next_line(fd);
 	map_lines = ft_calloc(1, 1);
 	if (!map_lines)
 		return (NULL);
 	first_lines = ft_calloc(1, 1);
 	if (!first_lines)
 		return (NULL);
-	if (!line || line[0] == '\n')
-		handle_map_error(map_lines, line, fd, game);
-	while (line)
-	{
-		if (is_first_wall(line) == true)
-			map_started = true;
-		if (map_started)
-		{
-			tmp = map_lines;
-			map_lines = ft_strjoin(map_lines, line);
-			free(tmp);
-			if (check_map_size(line, game))
-				handle_map_error(map_lines, line, fd, game);
-			free(line);
-			line = get_next_line(fd);
-		}
-		else
-		{
-			tmp = first_lines;
-			first_lines = ft_strjoin(first_lines, line);
-			free(tmp);
-			free(line);
-			line = get_next_line(fd);
-		}
-	}
+	map_read_helper(game, fd, &map_lines, &first_lines);
 	close(fd);
 	game->first_lines = first_lines;
 	return (map_lines);

@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/19 13:17:59 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/19 14:25:08 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_game
 	bool			key_left;
 	bool			key_right;
 	bool			key_shift;
+	bool			map_started;
 	char			*first_lines;
 	unsigned int	hexa_floor;
 	unsigned int	hexa_ceiling;
@@ -134,15 +135,20 @@ void				map_init(t_game *game, char *map_file);
 void				parsing_init(t_game *game);
 void				colors_init(t_game *game, t_parsing *parsing_data);
 char				*map_read(t_game *game, char *map_file);
+void				map_read_logic(char **dest_lines, char *line);
+void				map_read_helper(t_game *game, int fd, char **map_lines,
+						char **first_lines);
 int					file_descriptor_init(char *map, t_game *game);
 void				player_init(t_game *game);
 void				raycasting_init(t_game *game);
 void				split_ceiling(t_parsing *parsing_data);
 void				split_floor(t_parsing *parsing_data);
+t_parsing			*parsing_struct_init_helper(t_parsing *parsing_data);
 
 /* ----------  map validation ---------- */
 
 void				map_validation(t_game *game);
+bool				is_invalid_space(char **map, int x, int y);
 void				characters_check(t_game *game);
 void				increment_counters(t_game *game);
 int					parsing_logic(t_game *game);

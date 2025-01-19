@@ -3,85 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/17 15:21:02 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/19 14:24:52 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-bool	check_first_row(t_game *game)
-{
-	int	x;
-
-	x = 0;
-	while (game->map[0][x])
-	{
-		if (game->map[0][x] != '1' && game->map[0][x] != ' '
-			&& game->map[0][x] != '\t')
-			return (false);
-		x++;
-	}
-	return (true);
-}
-
-bool	check_last_row(t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = game->map_height - 1;
-	while (game->map[y][x])
-	{
-		if (game->map[y][x] != '1' && game->map[y][x] != ' '
-			&& game->map[y][x] != '\t')
-			return (false);
-		x++;
-	}
-	return (true);
-}
-
-bool	check_leftmost_wall(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (game->map[y])
-	{
-		x = 0;
-		while (game->map[y][x] == ' ' || game->map[y][x] == '\t')
-			x++;
-		if (game->map[y][x] != '1' && game->map[y][x] != '\0')
-			return (false);
-		y++;
-	}
-	return (true);
-}
-
-bool	check_rightmost_wall(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (game->map[y])
-	{
-		x = 0;
-		while (game->map[y][x])
-			x++;
-		x--;
-		while (x >= 0 && (game->map[y][x] == ' ' || game->map[y][x] == '\t'))
-			x--;
-		if (x >= 0 && game->map[y][x] != '1')
-			return (false);
-		y++;
-	}
-	return (true);
-}
 
 bool	additional_wall_checks(t_game *game)
 {
@@ -94,22 +23,8 @@ bool	additional_wall_checks(t_game *game)
 		x = 0;
 		while (game->map[y][x])
 		{
-			if ((game->map[y][x] == ' ' || game->map[y][x] == '\t')
-				&& game->map[y][x + 1] == '0')
+			if (is_invalid_space(game->map, x, y))
 				return (false);
-			if (x > 0 && (game->map[y][x] == ' ' || game->map[y][x] == '\t')
-				&& game->map[y][x - 1] == '0')
-				return (false);
-			if (y > 0)
-			{
-				if ((game->map[y - 1][x] == ' ' || game->map[y - 1][x] == '\t')
-					&& game->map[y][x] == '0')
-					return (false);
-				if (game->map[y + 1] && ((game->map[y + 1][x] == ' '
-						|| game->map[y + 1][x] == '\t')
-						&& game->map[y][x] == '0'))
-					return (false);
-			}
 			x++;
 		}
 		y++;
