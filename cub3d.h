@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/17 15:25:24 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:17:59 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ void				paths_spaces_check(t_parsing *parsing_data);
 bool				check_rightmost_wall(t_game *game);
 bool				check_leftmost_wall(t_game *game);
 bool				additional_wall_checks(t_game *game);
+void				paths_loop(t_parsing *parsing_data);
 
 /* ----------  main logic ---------- */
 
