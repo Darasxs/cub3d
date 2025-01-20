@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/20 16:57:55 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:25:21 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,38 +51,6 @@ void	raycasting_init(t_game *game)
 	game->ray->x_step = 0;
 }
 
-// void	player_hud(t_game *game)
-//{
-//	int		i;
-//    int		j;
-//    int		hud_width = 100;
-//    int		hud_height = 200;
-//    int		start_x = GAME_WIDTH - hud_width - 10;
-			// 10 pixels margin from the right
-//    int		start_y = GAME_HEIGHT - hud_height - 10;
-			// 10 pixels margin from the bottom
-
-//    // Draw bottle shape
-//    i = 0;
-//    while (i < hud_height)
-//    {
-//        j = 0;
-//        while (j < hud_width)
-//        {
-//            // Define the bottle shape
-//            if ((i < 40 && j >= 30 && j < 70) || // Bottle neck
-//                (i >= 40 && i < 160) || // Bottle body
-//                (i >= 160 && (j >= 20 && j < 80))) // Bottle base
-//            {
-//                mlx_put_pixel(game->img, start_x + j, start_y + i, 0xFFFFFF);
-	// White color
-//            }
-//            j++;
-//        }
-//        i++;
-//    }
-//}
-
 void	game_loop(void *param)
 {
 	t_game	*game;
@@ -95,7 +63,6 @@ void	game_loop(void *param)
 		shift = 1;
 	player_movement(game, game->player->player_angle, shift, 0);
 	raycasting(game);
-	// player_hud(game);
 }
 
 void	the_game(t_game *game, mlx_t *mlx)

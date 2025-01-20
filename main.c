@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:28:49 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/20 17:08:27 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:14:19 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	check_map_extension(char *str)
 	if (!ex || ft_strncmp(ex, ".cub", 4) != 0)
 	{
 		ft_putstr_fd("Error\nWrong file name\n", 2);
-		// free everything
 		exit(1);
 	}
 }
@@ -47,7 +46,6 @@ int	main(int ac, char **av)
 		free(game);
 		return (0);
 	}
-	// free everything
 	ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
 	return (1);
 }
