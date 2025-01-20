@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/20 13:39:41 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:12:38 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,11 +169,12 @@ void				paths_loop(t_parsing *parsing_data);
 
 void				the_game(t_game *game, mlx_t *mlx);
 void				game_loop(void *param);
-void				player_movement(t_game *game, t_player *player);
+void				player_movement(t_game *game, double angle, int shift,
+						int y);
 void				raycasting(t_game *game);
 void				mlx_key(mlx_key_data_t keydata, void *param);
 void				key_release(mlx_key_data_t keydata, t_game *game);
-void				rotate_player(t_game *game, bool direction);
+void				rotate_player(t_game *game);
 void				horizontal_intersection(t_game *game, t_ray *ray,
 						t_player *player, double angle);
 void				vertical_intersection(t_game *game, t_ray *ray,
@@ -187,5 +188,7 @@ void				texture_to_image(t_game *game, t_textures *textures);
 void				remove_fishbowl_effect(t_game *game, t_ray *ray,
 						t_player *player);
 double				degrees_to_radians(double degrees);
+double				normalize_the_angle(double angle);
+uint32_t			convert_to_hex(uint8_t r, uint8_t g, uint8_t b);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+         #
+#    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2025/01/19 14:21:16 by dpaluszk         ###   ########.fr        #
+#    Updated: 2025/01/20 16:14:03 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ SRC				=	main.c \
 					cleanup.c \
 					parsing_init.c \
 					parsing_init_helper.c \
-					rendering_textures.c
+					rendering_textures.c \
+					player_movement_helper.c \
+					utils.c \
+					rendering_init.c
 
 LIBMLX_DIR		=	./MLX42
 LIBFT_DIR		=	libft

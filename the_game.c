@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/20 14:14:00 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:17:55 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	player_init(t_game *game)
 	game->player = ft_calloc(1, sizeof(t_player));
 	if (!game->player)
 	{
-		//free everything
+		// free everything
 		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
 		exit(1);
 	}
@@ -38,7 +38,7 @@ void	raycasting_init(t_game *game)
 	game->ray = ft_calloc(1, sizeof(t_ray));
 	if (!game->ray)
 	{
-		//free everything
+		// free everything
 		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
 		exit(1);
 	}
@@ -51,14 +51,16 @@ void	raycasting_init(t_game *game)
 	game->ray->x_step = 0;
 }
 
-//void	player_hud(t_game *game)
+// void	player_hud(t_game *game)
 //{
 //	int		i;
 //    int		j;
 //    int		hud_width = 100;
 //    int		hud_height = 200;
-//    int		start_x = GAME_WIDTH - hud_width - 10; // 10 pixels margin from the right
-//    int		start_y = GAME_HEIGHT - hud_height - 10; // 10 pixels margin from the bottom
+//    int		start_x = GAME_WIDTH - hud_width - 10;
+			// 10 pixels margin from the right
+//    int		start_y = GAME_HEIGHT - hud_height - 10;
+			// 10 pixels margin from the bottom
 
 //    // Draw bottle shape
 //    i = 0;
@@ -72,7 +74,8 @@ void	raycasting_init(t_game *game)
 //                (i >= 40 && i < 160) || // Bottle body
 //                (i >= 160 && (j >= 20 && j < 80))) // Bottle base
 //            {
-//                mlx_put_pixel(game->img, start_x + j, start_y + i, 0xFFFFFF); // White color
+//                mlx_put_pixel(game->img, start_x + j, start_y + i, 0xFFFFFF);
+	// White color
 //            }
 //            j++;
 //        }
@@ -83,11 +86,16 @@ void	raycasting_init(t_game *game)
 void	game_loop(void *param)
 {
 	t_game	*game;
+	int		shift;
 
 	game = (t_game *)param;
-	player_movement(game, game->player);
+	if (game->key_shift)
+		shift = 2;
+	else
+		shift = 1;
+	player_movement(game, game->player->player_angle, shift, 0);
 	raycasting(game);
-	//player_hud(game);
+	// player_hud(game);
 }
 
 void	the_game(t_game *game, mlx_t *mlx)
@@ -96,7 +104,7 @@ void	the_game(t_game *game, mlx_t *mlx)
 	mlx = mlx_init(GAME_WIDTH, GAME_HEIGHT, "cub3d", true);
 	if (!mlx)
 	{
-		//free everything
+		// free everything
 		ft_putstr_fd("Error\nwhile allocating memory\n", 2);
 		exit(1);
 	}
