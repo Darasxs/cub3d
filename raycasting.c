@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:18:19 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/17 15:33:19 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:40:13 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 void	horizontal_intersection(t_game *game, t_ray *ray, t_player *player,
 		double angle)
 {
-	if (sin(angle) > 0)
+	if (sin(degrees_to_radians(angle)) > 0)
 		ray->horizontal_y = floor(player->pixel_pos_y / CUBE_SIZE) * CUBE_SIZE
 			+ CUBE_SIZE + 0.0001;
 	else
 		ray->horizontal_y = floor(player->pixel_pos_y / CUBE_SIZE) * CUBE_SIZE
 			- 0.0001;
 	ray->horizontal_x = player->pixel_pos_x + (ray->horizontal_y
-			- player->pixel_pos_y) / tan(angle);
-	if (sin(angle) > 0)
+			- player->pixel_pos_y) / tan(degrees_to_radians(angle));
+	if (sin(degrees_to_radians(angle)) > 0)
 		ray->y_step = CUBE_SIZE;
 	else
 		ray->y_step = -CUBE_SIZE;
-	ray->x_step = ray->y_step / tan(angle);
+	ray->x_step = ray->y_step / tan(degrees_to_radians(angle));
 	while (ray->horizontal_x >= 0 && ray->horizontal_x < game->map_width
 		* CUBE_SIZE && ray->horizontal_y >= 0
 		&& ray->horizontal_y < game->map_height * CUBE_SIZE)
@@ -48,19 +48,19 @@ void	horizontal_intersection(t_game *game, t_ray *ray, t_player *player,
 void	vertical_intersection(t_game *game, t_ray *ray, t_player *player,
 		double angle)
 {
-	if (cos(angle) > 0)
+	if (cos(degrees_to_radians(angle)) > 0)
 		ray->vertical_x = floor(player->pixel_pos_x / CUBE_SIZE) * CUBE_SIZE
 			+ CUBE_SIZE + 0.0001;
 	else
 		ray->vertical_x = floor(player->pixel_pos_x / CUBE_SIZE) * CUBE_SIZE
 			- 0.0001;
 	ray->vertical_y = player->pixel_pos_y + (ray->vertical_x
-			- player->pixel_pos_x) * tan(angle);
-	if (cos(angle) > 0)
+			- player->pixel_pos_x) * tan(degrees_to_radians(angle));
+	if (cos(degrees_to_radians(angle)) > 0)
 		ray->x_step = CUBE_SIZE;
 	else
 		ray->x_step = -CUBE_SIZE;
-	ray->y_step = ray->x_step * tan(angle);
+	ray->y_step = ray->x_step * tan(degrees_to_radians(angle));
 	while (ray->vertical_x >= 0 && ray->vertical_x < game->map_width * CUBE_SIZE
 		&& ray->vertical_y >= 0 && ray->vertical_y < game->map_height
 		* CUBE_SIZE)
@@ -83,11 +83,7 @@ void	remove_fishbowl_effect(t_game *game, t_ray *ray, t_player *player)
 	double	angle_result;
 
 	angle_result = ray->ray_angle - player->player_angle;
-	while (angle_result > M_PI)
-		angle_result = angle_result - 2 * M_PI;
-	while (angle_result < -M_PI)
-		angle_result = angle_result + 2 * M_PI;
-	ray->distance = ray->distance * cos(angle_result);
+	ray->distance *= cos(degrees_to_radians(angle_result));
 }
 
 void	raycasting(t_game *game)
@@ -98,7 +94,7 @@ void	raycasting(t_game *game)
 
 	ray = game->ray;
 	player = game->player;
-	ray->ray_angle = player->player_angle - (PLAYER_FOV / 2);
+	ray->ray_angle = player->player_angle + (PLAYER_FOV / 2);
 	ray_count = 0;
 	while (ray_count < GAME_WIDTH)
 	{
@@ -106,7 +102,6 @@ void	raycasting(t_game *game)
 		if (ray->ray_angle < 0.0)
 			ray->ray_angle += 360.0;
 		ray->wall_flag = false;
-		//printf("angle: %f\n", ray->ray_angle);
 		horizontal_intersection(game, ray, player, ray->ray_angle);
 		vertical_intersection(game, ray, player, ray->ray_angle);
 		if (ray->horizontal < ray->vertical)
@@ -119,6 +114,6 @@ void	raycasting(t_game *game)
 		remove_fishbowl_effect(game, ray, player);
 		rendering_textures(game, ray, player, ray_count);
 		ray_count++;
-		ray->ray_angle = ray->ray_angle + (PLAYER_FOV / GAME_WIDTH);
+		ray->ray_angle = ray->ray_angle - (PLAYER_FOV / GAME_WIDTH);
 	}
 }

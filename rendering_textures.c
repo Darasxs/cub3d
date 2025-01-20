@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:22:35 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/17 15:23:06 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:40:27 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,14 @@ void	render_wall(t_game *game, t_ray *ray, int ray_count, int top_pixel,
 	}
 }
 
+double	degrees_to_radians(double degrees)
+{
+	double	rad;
+
+	rad = degrees * (M_PI / 180.0);
+	return (rad);
+}
+
 void	rendering_textures(t_game *game, t_ray *ray, t_player *player,
 		int ray_count)
 {
@@ -88,7 +96,7 @@ void	rendering_textures(t_game *game, t_ray *ray, t_player *player,
 	double	bottom_pixel;
 	int		i;
 
-	wall_size = (CUBE_SIZE / ray->distance) * ((GAME_WIDTH / 2) / tan(PLAYER_FOV
+	wall_size = (CUBE_SIZE / ray->distance) * ((GAME_WIDTH / 2) / tan(degrees_to_radians(PLAYER_FOV)
 				/ 2));
 	top_pixel = (GAME_HEIGHT / 2) - (wall_size / 2);
 	bottom_pixel = (GAME_HEIGHT / 2) + (wall_size / 2);

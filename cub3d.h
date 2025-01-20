@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/19 14:25:08 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:39:41 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@
 # define GAME_WIDTH 1920
 # define GAME_HEIGHT 1080
 # define CUBE_SIZE 1080
-# define PLAYER_FOV (60 * M_PI) / 180
+# define PLAYER_FOV 60.0
 # define MOVEMENT_SPEED 50
-# define MOUSE_SENSITIVITY 0.04
+# define MOUSE_SENSITIVITY 3.0
 # define BYTES_FOR_PIXEL 4
 
 /* ----------  struct for textures ---------- */
@@ -186,5 +186,6 @@ void				load_textures(t_textures *textures, t_parsing *parsing);
 void				texture_to_image(t_game *game, t_textures *textures);
 void				remove_fishbowl_effect(t_game *game, t_ray *ray,
 						t_player *player);
+double				degrees_to_radians(double degrees);
 
 #endif

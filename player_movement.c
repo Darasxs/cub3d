@@ -6,30 +6,11 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:07:06 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/17 15:29:17 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:49:32 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//void	rotate_player(t_game *game, bool direction)
-//{
-//	t_player	*player;
-
-//	player = game->player;
-//	if (direction)
-//	{
-//		player->player_angle = player->player_angle + MOUSE_SENSITIVITY;
-//		if (player->player_angle > 2 * M_PI)
-//			player->player_angle = player->player_angle - (2 * M_PI);
-//	}
-//	else
-//	{
-//		player->player_angle = player->player_angle - MOUSE_SENSITIVITY;
-//		if (player->player_angle > 2 * M_PI)
-//			player->player_angle = player->player_angle + (2 * M_PI);
-//	}
-//}
 
 void	rotate_player(t_game *game, bool direction)
 {
@@ -37,9 +18,9 @@ void	rotate_player(t_game *game, bool direction)
 
 	player = game->player;
 	if (direction)
-		player->player_angle = player->player_angle + MOUSE_SENSITIVITY;
-	else
 		player->player_angle = player->player_angle - MOUSE_SENSITIVITY;
+	else
+		player->player_angle = player->player_angle + MOUSE_SENSITIVITY;
 	player->player_angle = fmod(player->player_angle, 360.0);
 	if (player->player_angle < 0.0)
 		player->player_angle += 360.0;
@@ -74,23 +55,23 @@ void	player_movement(t_game *game, t_player *player)
 		shift = 2;
 	if (game->key_w)
 	{
-		new_y = sin(player->player_angle) * MOVEMENT_SPEED * shift;
-		new_x = cos(player->player_angle) * MOVEMENT_SPEED * shift;
+		new_y = sin(degrees_to_radians(player->player_angle)) * MOVEMENT_SPEED * shift;
+		new_x = cos(degrees_to_radians(player->player_angle)) * MOVEMENT_SPEED * shift;
 	}
 	else if (game->key_s)
 	{
-		new_y = -sin(player->player_angle) * MOVEMENT_SPEED * shift;
-		new_x = -cos(player->player_angle) * MOVEMENT_SPEED * shift;
+		new_y = -sin(degrees_to_radians(player->player_angle)) * MOVEMENT_SPEED * shift;
+		new_x = -cos(degrees_to_radians(player->player_angle)) * MOVEMENT_SPEED * shift;
 	}
 	if (game->key_a)
 	{
-		new_y = -cos(player->player_angle) * MOVEMENT_SPEED * shift;
-		new_x = sin(player->player_angle) * MOVEMENT_SPEED * shift;
+		new_y = cos(degrees_to_radians(player->player_angle)) * MOVEMENT_SPEED * shift;
+		new_x = -sin(degrees_to_radians(player->player_angle)) * MOVEMENT_SPEED * shift;
 	}
 	else if (game->key_d)
 	{
-		new_y = cos(player->player_angle) * MOVEMENT_SPEED * shift;
-		new_x = -sin(player->player_angle) * MOVEMENT_SPEED * shift;
+		new_y = -cos(degrees_to_radians(player->player_angle)) * MOVEMENT_SPEED * shift;
+		new_x = sin(degrees_to_radians(player->player_angle)) * MOVEMENT_SPEED * shift;
 	}
 	if (new_y || new_x)
 		new_player_position(game, new_y, new_x);

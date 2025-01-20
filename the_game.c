@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/17 15:56:23 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:14:00 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,6 @@ void	player_init(t_game *game)
 		game->player->player_angle = 180;
 	else
 		game->player->player_angle = 0;
-	//if (c == 'N')
-	//	mlx->ply->angle = 3 * M_PI / 2;
-	//if (c == 'S')
-	//	mlx->ply->angle = M_PI / 2;
-	//if (c == 'E')
-	//	mlx->ply->angle = 0;
-	//if (c == 'W')
-	//	mlx->ply->angle = M_PI;
 }
 
 void	raycasting_init(t_game *game)

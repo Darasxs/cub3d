@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_init_helper.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:57:47 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/19 13:40:43 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:13:01 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	split_ceiling(t_parsing *parsing_data)
 			i++;
 		}
 	}
+	else
+	{
+		ft_putstr_fd("Error\nInvalid map\n", 2);
+		exit(1);
+	}
 	free(colors);
 }
 
@@ -51,6 +56,11 @@ void	split_floor(t_parsing *parsing_data)
 			i++;
 		}
 	}
+	else
+	{
+		ft_putstr_fd("Error\nInvalid map\n", 2);
+		exit(1);
+	}
 	free(colors);
 }
 
@@ -67,7 +77,8 @@ void	ceiling_floor_check(t_parsing *parsing_data)
 			ft_putstr_fd("Error\nColor range must be between 0 and 255!\n", 2);
 			exit(1);
 		}
-		if (!parsing_data->f_color[i] || !parsing_data->c_color[i])
+		if ((!parsing_data->f_color[i] || !parsing_data->c_color[i])
+			&& (parsing_data->f_color[i] != 0 && parsing_data->c_color[i] != 0))
 		{
 			ft_putstr_fd("Error\n", 2);
 			exit(1);
@@ -81,6 +92,11 @@ void	ceiling_floor_helper(t_parsing *parsing_data)
 	split_ceiling(parsing_data);
 	split_floor(parsing_data);
 	ceiling_floor_check(parsing_data);
+}
+
+static inline uint32_t	convert_to_hex(uint8_t r, uint8_t g, uint8_t b)
+{
+	return ((r << 24) | (g << 16) | (b << 8) | 0xFF);
 }
 
 void	colors_init(t_game *game, t_parsing *parsing_data)
@@ -108,6 +124,8 @@ void	colors_init(t_game *game, t_parsing *parsing_data)
 		exit(1);
 	}
 	ceiling_floor_helper(parsing_data);
-	game->hexa_floor = (parsing_data->f_color[0] << 24) | (parsing_data->f_color[1] << 16) | (parsing_data->f_color[2] << 8) | 0xFF;
-	game->hexa_ceiling = (parsing_data->c_color[0] << 24) | (parsing_data->c_color[1] << 16) | (parsing_data->c_color[2] << 8) | 0xFF;
+	game->hexa_floor = convert_to_hex(parsing_data->f_color[0],
+			parsing_data->f_color[1], parsing_data->f_color[2]);
+	game->hexa_ceiling = convert_to_hex(parsing_data->c_color[0],
+			parsing_data->c_color[1], parsing_data->c_color[2]);
 }
