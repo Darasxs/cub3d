@@ -6,7 +6,7 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 14:17:46 by paprzyby          #+#    #+#              #
-#    Updated: 2025/01/20 16:14:03 by paprzyby         ###   ########.fr        #
+#    Updated: 2025/01/20 16:18:54 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@
 NAME			=	cub3d
 
 SRC				=	main.c \
-					check_map_extension.c \
 					map_init.c \
 					map_init_helper.c \
 					struct_init.c \

@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:48:16 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/17 15:25:01 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:08:12 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	character_check_logic(t_game *game)
 		game->x++;
 	else if (game->map[game->y][game->x])
 	{
-		printf("Error\n\"%c\" is an invalid character\n",
-			game->map[game->y][game->x]);
+		ft_putstr_fd("Error\n\"", 1);
+		ft_putchar_fd(game->map[game->y][game->x], 1);
+		ft_putstr_fd("\"", 1);
+		ft_putstr_fd(" is an invalid character\n", 1);
 		// free everything
 		exit(1);
 	}
@@ -56,7 +58,7 @@ void	characters_check(t_game *game)
 	}
 	if (game->player_counter != 1)
 	{
-		printf("Error\nThere must be one player in the game\n");
+		ft_putstr_fd("Error\nThere must be one player in the game\n", 1);
 		// free everything
 		exit(1);
 	}

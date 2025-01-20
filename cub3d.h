@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/20 16:12:38 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:08:19 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define GAME_HEIGHT 1080
 # define CUBE_SIZE 1080
 # define PLAYER_FOV 60.0
-# define MOVEMENT_SPEED 50
+# define MOVEMENT_SPEED 75
 # define MOUSE_SENSITIVITY 3.0
 # define BYTES_FOR_PIXEL 4
 
@@ -122,10 +122,6 @@ typedef struct s_game
 	t_parsing		*parsing;
 	t_textures		*textures;
 }					t_game;
-
-/* ----------  map extenstion ---------- */
-
-void				check_map_extension(char *str);
 
 /* ----------  initializations ---------- */
 

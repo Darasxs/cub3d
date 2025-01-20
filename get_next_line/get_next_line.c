@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:51:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/07/15 13:51:25 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:04:08 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,18 +100,3 @@ char	*get_next_line(int fd)
 	str = get_the_rest(str);
 	return (line);
 }
-
-//int main()
-//{
-//	int		fd;
-
-//	fd = open("map.ber", O_RDONLY);
-//	if (fd == -1)
-//	{
-//		printf("Error opening file\n");
-//		return (1);
-//	}
-//	printf("%s", get_next_line(fd));
-//	close(fd);
-//	return (0);
-//}

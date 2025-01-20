@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:22:35 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/20 16:17:29 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:21:39 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ unsigned int	calc_texture_color(int x, int y, t_ray *ray, t_game *game)
 	return ((rgba[0] << 24) | (rgba[1] << 16) | (rgba[2] << 8) | rgba[3]);
 }
 
-void	render_wall(t_game *game, int ray_count, int top_pixel,
+void	render_wall(t_game *game, int ray_count, double top_pixel,
 		double wall_size)
 {
 	t_textures		*textures;

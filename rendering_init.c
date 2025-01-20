@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:13:29 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/20 16:13:44 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:00:02 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,29 @@
 void	load_textures(t_textures *textures, t_parsing *parsing)
 {
 	textures->no_texture = mlx_load_png(parsing->no_path);
+	if (!textures->no_texture)
+	{
+		ft_putstr_fd("Error\nwhile loading the texture\n", 2);
+		exit(1);
+	}
 	textures->so_texture = mlx_load_png(parsing->so_path);
+	if (!textures->so_texture)
+	{
+		ft_putstr_fd("Error\nwhile loading the texture\n", 2);
+		exit(1);
+	}
 	textures->ea_texture = mlx_load_png(parsing->ea_path);
+	if (!textures->ea_texture)
+	{
+		ft_putstr_fd("Error\nwhile loading the texture\n", 2);
+		exit(1);
+	}
 	textures->we_texture = mlx_load_png(parsing->we_path);
+	if (!textures->we_texture)
+	{
+		ft_putstr_fd("Error\nwhile loading the texture\n", 2);
+		exit(1);
+	}
 }
 
 void	texture_to_image(t_game *game, t_textures *textures)

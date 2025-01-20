@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:07:06 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/20 16:00:24 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:28:04 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ void	player_movement(t_game *game, double angle, int shift, int new_y)
 	}
 	else if (game->key_s)
 	{
-		new_y = -sin(degrees_to_radians(angle)) * MOVEMENT_SPEED * shift;
-		new_x = -cos(degrees_to_radians(angle)) * MOVEMENT_SPEED * shift;
+		new_y = -sin(degrees_to_radians(angle)) * MOVEMENT_SPEED;
+		new_x = -cos(degrees_to_radians(angle)) * MOVEMENT_SPEED;
 	}
 	if (game->key_a)
 	{
-		new_y = cos(degrees_to_radians(angle)) * MOVEMENT_SPEED * shift;
-		new_x = -sin(degrees_to_radians(angle)) * MOVEMENT_SPEED * shift;
+		new_y = cos(degrees_to_radians(angle)) * MOVEMENT_SPEED;
+		new_x = -sin(degrees_to_radians(angle)) * MOVEMENT_SPEED;
 	}
 	else if (game->key_d)
 	{
-		new_y = -cos(degrees_to_radians(angle)) * MOVEMENT_SPEED * shift;
-		new_x = sin(degrees_to_radians(angle)) * MOVEMENT_SPEED * shift;
+		new_y = -cos(degrees_to_radians(angle)) * MOVEMENT_SPEED;
+		new_x = sin(degrees_to_radians(angle)) * MOVEMENT_SPEED;
 	}
 	new_player_position(game, new_y, new_x);
 	rotate_player(game);

@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:28:49 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/11 15:26:44 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:08:27 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	check_map_extension(char *str)
+{
+	char	*ex;
+
+	ex = ft_strrchr(str, '.');
+	if (!ex || ft_strncmp(ex, ".cub", 4) != 0)
+	{
+		ft_putstr_fd("Error\nWrong file name\n", 2);
+		// free everything
+		exit(1);
+	}
+}
 
 int	main(int ac, char **av)
 {

@@ -1,10 +1,10 @@
-	NO    ./textures/theme_02/east.png
-SO 					./textures/theme_02/north.png
-  C		 245		,222,0		
-		WE ./textures/theme_02/south.png
+NO ./textures/north.png
+SO ./textures/south.png
+WE ./textures/west.png
+EA ./textures/east.png
 
-		F   	225,   127,80
-EA ./textures/theme_02/west.png
+F 128,128,128
+C 0, 0, 0
 
                                                         111111
                                                         11010111111111

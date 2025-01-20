@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/20 16:17:55 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:57:55 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,12 @@ void	the_game(t_game *game, mlx_t *mlx)
 	}
 	game->mlx = mlx;
 	game->img = mlx_new_image(game->mlx, GAME_WIDTH, GAME_HEIGHT);
+	if (!game->img)
+	{
+		// free everything
+		ft_putstr_fd("Error\nwhile allocating memory\n", 2);
+		exit(1);
+	}
 	player_init(game);
 	raycasting_init(game);
 	rendering_init(game, game->parsing);
