@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:23:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/19 14:24:52 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:40:40 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	map_validation(t_game *game)
 	if (parsing_logic(game) == 1)
 	{
 		ft_putstr_fd("Error\nMap is not surrounded by walls\n", 2);
-		// free everything
 		exit(1);
 	}
 }

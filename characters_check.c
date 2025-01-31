@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   characters_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:48:16 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/20 17:08:12 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:39:50 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	character_check_logic(t_game *game)
 		ft_putchar_fd(game->map[game->y][game->x], 1);
 		ft_putstr_fd("\"", 1);
 		ft_putstr_fd(" is an invalid character\n", 1);
-		// free everything
 		exit(1);
 	}
 }
@@ -59,7 +58,6 @@ void	characters_check(t_game *game)
 	if (game->player_counter != 1)
 	{
 		ft_putstr_fd("Error\nThere must be one player in the game\n", 1);
-		// free everything
 		exit(1);
 	}
 }

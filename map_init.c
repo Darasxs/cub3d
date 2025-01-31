@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:44 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/19 14:19:51 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:40:33 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	map_init(t_game *game, char *map_file)
 	if (!lines)
 	{
 		ft_putstr_fd("Error while reading the map\n", 2);
-		// free everything
 		exit(1);
 	}
 	if (game->first_lines)
@@ -49,7 +48,6 @@ void	map_init(t_game *game, char *map_file)
 	{
 		free(lines);
 		ft_putstr_fd("Error\nInvalid map\n", 2);
-		// free everything
 		exit(1);
 	}
 	free(lines);

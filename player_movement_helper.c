@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement_helper.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:43:20 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/20 17:03:52 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:42:04 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	mlx_key(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
 		printf("\nCub3d has been closed\n\n");
-		// free everything
 		exit(0);
 	}
 	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)

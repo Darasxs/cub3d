@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   the_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/20 17:25:21 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:41:11 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	player_init(t_game *game)
 	game->player = ft_calloc(1, sizeof(t_player));
 	if (!game->player)
 	{
-		// free everything
 		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
 		exit(1);
 	}
@@ -38,7 +37,6 @@ void	raycasting_init(t_game *game)
 	game->ray = ft_calloc(1, sizeof(t_ray));
 	if (!game->ray)
 	{
-		// free everything
 		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
 		exit(1);
 	}
@@ -71,7 +69,6 @@ void	the_game(t_game *game, mlx_t *mlx)
 	mlx = mlx_init(GAME_WIDTH, GAME_HEIGHT, "cub3d", true);
 	if (!mlx)
 	{
-		// free everything
 		ft_putstr_fd("Error\nwhile allocating memory\n", 2);
 		exit(1);
 	}
@@ -79,7 +76,6 @@ void	the_game(t_game *game, mlx_t *mlx)
 	game->img = mlx_new_image(game->mlx, GAME_WIDTH, GAME_HEIGHT);
 	if (!game->img)
 	{
-		// free everything
 		ft_putstr_fd("Error\nwhile allocating memory\n", 2);
 		exit(1);
 	}

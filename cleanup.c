@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:48:03 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/17 15:25:14 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:56:47 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	handle_map_error(char *lines, char *line, int fd, t_game *game)
 	if (line[0] == '\n')
 		free(line);
 	close(fd);
-	// free everything
+	if (game)
+		free(game);
 	ft_putstr_fd("Error\nInvalid map\n", 2);
 	exit(1);
 }

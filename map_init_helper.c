@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:19:58 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/19 14:20:06 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:57:55 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ int	file_descriptor_init(char *map, t_game *game)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
-		(void)game;
 		ft_putstr_fd("Error\nwith the file descriptor\n", 2);
-		// free game struct
+		free(game);
 		exit(1);
 	}
 	return (fd);

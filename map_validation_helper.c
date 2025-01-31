@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation_helper.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:20:56 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/20 14:15:42 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:50:37 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ bool	check_last_row(t_game *game)
 
 	x = 0;
 	y = game->map_height - 1;
+	while (game->map[y][x] == ' ' || game->map[y][x] == '\t')
+	{
+		x++;
+		if (game->map[y][x] == '\0')
+		{
+			x = 0;
+			y--;
+		}
+	}
+	x = 0;
 	while (game->map[y][x])
 	{
 		if (game->map[y][x] != '1' && game->map[y][x] != ' '

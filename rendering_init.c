@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:13:29 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/20 17:00:02 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:41:04 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	rendering_init(t_game *game, t_parsing *parsing)
 	game->textures = ft_calloc(1, sizeof(t_textures));
 	if (!game->textures)
 	{
-		// free everything
 		ft_putstr_fd("Error\nwhile allocating the memory\n", 2);
 		exit(1);
 	}
