@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:13:29 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/31 18:41:04 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/02/01 15:01:38 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	texture_to_image(t_game *game, t_textures *textures)
 
 void	rendering_init(t_game *game, t_parsing *parsing)
 {
+	player_init(game);
+	raycasting_init(game);
 	game->textures = ft_calloc(1, sizeof(t_textures));
 	if (!game->textures)
 	{

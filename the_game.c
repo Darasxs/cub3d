@@ -6,7 +6,7 @@
 /*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:08:33 by dpaluszk          #+#    #+#             */
-/*   Updated: 2025/01/31 18:41:11 by dpaluszk         ###   ########.fr       */
+/*   Updated: 2025/02/01 15:01:31 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	the_game(t_game *game, mlx_t *mlx)
 	mlx = mlx_init(GAME_WIDTH, GAME_HEIGHT, "cub3d", true);
 	if (!mlx)
 	{
+		free(game->parsing);
+		free_split(game->map);
+		free(game);
 		ft_putstr_fd("Error\nwhile allocating memory\n", 2);
 		exit(1);
 	}
@@ -79,8 +82,6 @@ void	the_game(t_game *game, mlx_t *mlx)
 		ft_putstr_fd("Error\nwhile allocating memory\n", 2);
 		exit(1);
 	}
-	player_init(game);
-	raycasting_init(game);
 	rendering_init(game, game->parsing);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	mlx_loop_hook(mlx, game_loop, game);
@@ -88,5 +89,5 @@ void	the_game(t_game *game, mlx_t *mlx)
 	mlx_loop(mlx);
 	mlx_delete_image(game->mlx, game->img);
 	mlx_terminate(mlx);
-	printf("\nCub3d has been closed\n\n");
+	free_split(game->parsing->split_first_lines);
 }

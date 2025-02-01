@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpaluszk <dpaluszk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:29:02 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/01/20 17:08:19 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:49:31 by dpaluszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,5 +186,6 @@ void				remove_fishbowl_effect(t_game *game, t_ray *ray,
 double				degrees_to_radians(double degrees);
 double				normalize_the_angle(double angle);
 uint32_t			convert_to_hex(uint8_t r, uint8_t g, uint8_t b);
+void				free_split(char **split);
 
 #endif
